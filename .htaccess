@@ -1,6 +1,6 @@
 RewriteEngine On
 RewriteBase /
-
+Options -Indexes 
 #if the request is not secure
 RewriteCond %{HTTPS} off
 #redirect to the secure version
