@@ -1,3 +1,10 @@
+<?php
+
+    if (@$_SESSION['uid'] == NULL) {
+        header("Location:/");
+    }
+?>
+
 <!DOCTYPE html>
 <html class='han-la' lang='zh-tw'>
   <head>
@@ -5,14 +12,14 @@
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <title>NTU Voting</title>
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="stylesheets/all.css" rel="stylesheet" type="text/css" />
-    <script src="javascripts/modernizr.js" type="text/javascript"></script>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="css/all.css" rel="stylesheet" type="text/css" />
+    <script src="js/modernizr.js" type="text/javascript"></script>
   </head>
   <body class='step1'>
     <div class='wrapper'>
       <div class='content'>
         <form action="" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
-          <h1>NTU Voting</h1>
+          <h1>102-2 NTU Voting</h1>
         </hgroup>
         <fieldset><div class='input'>
           <div class='label'>
@@ -32,6 +39,6 @@
         </form>
       </div>
     </div>
-    <script src="javascripts/all.js" type="text/javascript"></script>
+    <script src="js/all.js" type="text/javascript"></script>
   </body>
 </html>
