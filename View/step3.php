@@ -1,3 +1,18 @@
+<?php
+// input c_id_arr for c_id list
+// input c_name_arr for c_name list
+// input title title_en for title
+// input auth_key , r_id
+
+if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
+  header("vote-auth");
+}
+
+@session_start();
+    if ($_SESSION['uid'] == NULL) {
+        header("Location:/");
+    }
+?>
 <!DOCTYPE html>
 <html class='han-la' lang='zh-tw'>
   <head>
@@ -17,141 +32,48 @@
         </hgroup>
 
         <input value="Submit" class="button" type="submit" />
-        <input name="selection" id="selection" type="hidden" />
-        
-        <section class='candidate'>
+
+        <input name="authkey" id="authkey" type="hidden" value="<?=$authkey;?>"/>
+  
+        <input name="r_id" id="r_id" type="hidden" value="<?=$r_id;?>"/>
+
+
+<?php
+
+        foreach ($c_id_arr as $c_id_key => $c_id_value) {
+          
+?>
+
+
+        <section class='<?=$c_id_key;?>'>
           <div class='id'>1</div>
           <div class='opinions'>
             <label>
-              <input name="opinion_to_1" value="1" type="radio" />
+              <input name="selection_<?=$c_id_key;?>" value="1" type="radio" />
               <div class='agree'>✓</div>
             </label>
             <label>
-              <input name="opinion_to_1" value="0" checked="checked" type="radio" />
+              <input name="selection_<?=$c_id_key;?>" value="0" checked="checked" type="radio" />
               <div class='none'>-</div>
             </label>
             <label>
-              <input name="opinion_to_1" value="-1" type="radio" />
+              <input name="selection_<?=$c_id_key;?>" value="-1" type="radio" />
               <div class='disagree'>✕</div>
             </label>
           </div>
           <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-1.jpg)'></div>
+            <div class='img' style='background-image: url(/images/cimg/<?=$c_id_value;?>.jpg)'></div>
           </div>
-          <h1 class='name'>小小兵</h1>
+          <h1 class='name'><?=$c_name_arr[$c_id_key];?></h1>
           <div class='elect'></div>
         </section>
-        <section class='candidate'>
-          <div class='id'>2</div>
-          <div class='opinions'>
-            <label>
-              <input name="opinion_to_2" value="1" type="radio" />
-              <div class='agree'>✓</div>
-            </label>
-            <label>
-              <input name="opinion_to_2" value="0" checked="checked" type="radio" />
-              <div class='none'>-</div>
-            </label>
-            <label>
-              <input name="opinion_to_2" value="-1" type="radio" />
-              <div class='disagree'>✕</div>
-            </label>
-          </div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-2.jpg)'></div>
-          </div>
-          <h1 class='name'>小中兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate'>
-          <div class='id'>3</div>
-          <div class='opinions'>
-            <label>
-              <input name="opinion_to_3" value="1" type="radio" />
-              <div class='agree'>✓</div>
-            </label>
-            <label>
-              <input name="opinion_to_3" value="0" checked="checked" type="radio" />
-              <div class='none'>-</div>
-            </label>
-            <label>
-              <input name="opinion_to_3" value="-1" type="radio" />
-              <div class='disagree'>✕</div>
-            </label>
-          </div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-3.jpg)'></div>
-          </div>
-          <h1 class='name'>小大兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate'>
-          <div class='id'>4</div>
-          <div class='opinions'>
-            <label>
-              <input name="opinion_to_4" value="1" type="radio" />
-              <div class='agree'>✓</div>
-            </label>
-            <label>
-              <input name="opinion_to_4" value="0" checked="checked" type="radio" />
-              <div class='none'>-</div>
-            </label>
-            <label>
-              <input name="opinion_to_4" value="-1" type="radio" />
-              <div class='disagree'>✕</div>
-            </label>
-          </div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-4.jpg)'></div>
-          </div>
-          <h1 class='name'>中小兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate'>
-          <div class='id'>5</div>
-          <div class='opinions'>
-            <label>
-              <input name="opinion_to_5" value="1" type="radio" />
-              <div class='agree'>✓</div>
-            </label>
-            <label>
-              <input name="opinion_to_5" value="0" checked="checked" type="radio" />
-              <div class='none'>-</div>
-            </label>
-            <label>
-              <input name="opinion_to_5" value="-1" type="radio" />
-              <div class='disagree'>✕</div>
-            </label>
-          </div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-5.jpg)'></div>
-          </div>
-          <h1 class='name'>中中兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate'>
-          <div class='id'>6</div>
-          <div class='opinions'>
-            <label>
-              <input name="opinion_to_6" value="1" type="radio" />
-              <div class='agree'>✓</div>
-            </label>
-            <label>
-              <input name="opinion_to_6" value="0" checked="checked" type="radio" />
-              <div class='none'>-</div>
-            </label>
-            <label>
-              <input name="opinion_to_6" value="-1" type="radio" />
-              <div class='disagree'>✕</div>
-            </label>
-          </div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-6.jpg)'></div>
-          </div>
-          <h1 class='name'>中大兵</h1>
-          <div class='elect'></div>
-        </section>
-                </form>
+
+<?php
+        }
+?>
+
+
+        </form>
       </div>
     </div>
     <script src="/js/all.js" type="text/javascript"></script>

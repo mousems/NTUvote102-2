@@ -13,6 +13,7 @@
     require_once(Controllers_DIR.'Controller.php');
     require_once(Controllers_DIR.'Vote.php');
     require_once(Controllers_DIR.'Vote_page.php');
+    require_once(Controllers_DIR.'TicketSubmit.php');
     require_once(Models_DIR.'MySQL.php');
     require_once(Models_DIR.'User_model.php');
 
@@ -40,6 +41,8 @@
 
 		case 'vote-auth':
 			//page for input password
+			$_SESSION['password'] = "";
+			$_SESSION['step'] = "";
 			$Controller->view("step1");
 			break;
 		case 'password_check':
@@ -50,11 +53,61 @@
 
 		case 'vote':
 			//page for voting
+
+			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
+			if ($authkey!=$_GET['auth']) {
+				NTULog("vote page authkey not match for SESSION data.");
+				header("Location:vote-auth");
+			}else{
+				//pass csrf
+
+				$vote_r_id = Get_votelist($_SESSION['password']);
+				$vote_r_id = $vote_r_id[$_SESSION['step']];
+				//vote region
+
+				$votepage = new VotePage_main;
+
+				if (substr($vote_r_id, 1,1) == "B" || $vote_r_id=="C2") {
+					//multi
+					$votepage->vote_multi($vote_r_id);
+				}else{
+					//single
+					$votepage->vote_single($vote_r_id);
+				}
+
+
+
+
+
+			}
 			break;
 
 		case 'vote_submit':
 			//page for vote result form post destination
+			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
+			if ($authkey!=$_POST['authkey']) {
+				NTULog("vote_submit page authkey not match for SESSION data.");
+				header("Location:vote-auth");
+			}else{
+				if (isset($_POST['selection'])) {
+					$selection = $_POST['selection']; // int
 
+					if (!preg_match("/\d/", $selection)) {
+						NTULog("vote_submit page selection variables not match for integer.");
+						header("Location:vote-auth");
+						
+					}
+
+
+					$thcketsubmit = new TicketSubmit;
+					$thcketsubmit->Ticket_Single_Submit($selection , $_POST['r_id']);
+				}else{
+					$selection = 0;
+				}
+
+
+				
+			}
 			break;
 		case 'login':
 			$user = new User_Model;

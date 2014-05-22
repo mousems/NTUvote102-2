@@ -1,3 +1,19 @@
+<?php
+// input c_id_arr for c_id list
+// input c_name_arr for c_name list
+// input title title_en for title
+// input auth_key , r_id
+
+if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
+  header("vote-auth");
+}
+
+@session_start();
+    if ($_SESSION['uid'] == NULL) {
+        header("Location:/");
+    }
+?>
+
 <!DOCTYPE html>
 <html class='han-la' lang='zh-tw'>
   <head>
@@ -11,60 +27,40 @@
   <body class='step2'>
     <div class='wrapper'>
       <div class='content'>
-        <form action="" accept-charset="UTF-8" class="step2-form" method="post"><hgroup>
+        <form action="vote_submit" accept-charset="UTF-8" class="step2-form" method="post"><hgroup>
           <h1>102-2 NTU Voting</h1>
-          <h2>點選你想要投給誰</h2>
+          <h1><?=$title;?></h1>
+          <h2><?=$title_en;?></h2>
         </hgroup>
         <input value="Submit" class="button" type="submit" />
-        <input name="selection" id="selection" type="hidden" />
+
+        <input name="authkey" id="authkey" type="hidden" value="<?=$authkey;?>"/>
+  
+        <input name="r_id" id="r_id" type="hidden" value="<?=$r_id;?>"/>
+
+        <input name="selection" id="selection" type="hidden" value="0"/>
+
+
+
+<?php
+
+        foreach ($c_id_arr as $c_id_key => $c_id_value) {
+          
+?>
+
         <section class='candidate selection'>
-          <div class='id'>1</div>
+          <div class='id'><?=$c_id_key;?></div>
           <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-1.jpg)'></div>
+            <div class='img' style='background-image: url(/images/cimg/<?=$c_id_value;?>.jpg)'></div>
           </div>
-          <h1 class='name'>小小兵</h1>
+          <h1 class='name'><?=$c_name_arr[$c_id_key];?></h1>
           <div class='elect'></div>
         </section>
-        <section class='candidate selection'>
-          <div class='id'>2</div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-2.jpg)'></div>
-          </div>
-          <h1 class='name'>小中兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate selection'>
-          <div class='id'>3</div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-3.jpg)'></div>
-          </div>
-          <h1 class='name'>小大兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate selection'>
-          <div class='id'>4</div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-4.jpg)'></div>
-          </div>
-          <h1 class='name'>中小兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate selection'>
-          <div class='id'>5</div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-5.jpg)'></div>
-          </div>
-          <h1 class='name'>中中兵</h1>
-          <div class='elect'></div>
-        </section>
-        <section class='candidate selection'>
-          <div class='id'>6</div>
-          <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/t-6.jpg)'></div>
-          </div>
-          <h1 class='name'>中大兵</h1>
-          <div class='elect'></div>
-        </section>
+
+
+<?php
+        }
+?>
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
- 
+ 	
 	date_default_timezone_set("Asia/Taipei");
 	function exception_handler($e){
 	    PHPerrorLog("EXCEPTION : ".$e->getMessage()." --- on Line:".$e->getLine()." at file:".$e->getFile());
@@ -9,7 +9,9 @@
 	function get_keyindex($password=''){
 		return substr(md5($password), 1,10);
 	}
-	
+
+
+
 	function Get_votelist($password){
 
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
@@ -60,7 +62,7 @@
 	}
 
 	function NTULog($msg,$ECHO=false){
-	    $_msg = date("Y-m-d H:i:s")." ".get_client_ip()." $msg\n";
+	    $_msg = date("Y-m-d H:i:s")." ".get_client_ip()." $msg session:".json_encode($_SESSION)."\n";
 	    $log_path="/var/log/NTUvote/NTUinfo.log";
 	    @file_put_contents($log_path, $_msg,FILE_APPEND);
 	}

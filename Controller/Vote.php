@@ -149,7 +149,7 @@ class Vote extends MySQL {
 
 		$keyindex = get_keyindex($password) ;
 		try {
-			$SQL = "UPDATE `ticket` SET `status`='0' where `keyindex`='$keyindex'";
+			$SQL = "UPDATE `ticket` SET `status`='0' and `step`=`step`+1 where `keyindex`='$keyindex'";
 			$this->query_row($SQL);
 
 			return 1;
