@@ -26,9 +26,11 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
   <body class='step3'>
     <div class='wrapper'>
       <div class='content'>
-        <form action="" accept-charset="UTF-8" class="step3-form" method="post"><hgroup>
+        <form action="vote_submit_multi" accept-charset="UTF-8" class="step3-form" method="post"><hgroup>
           <h1>102-2 NTU Voting</h1>
-        <h2>✓ 同意/agree、✕ 不同意/disagree、- 沒意見/no comment </h2>  
+          <h1><?=$title;?></h1>
+          <h2><?=$title_en;?></h2>
+          <h3>✓ 同意/agree、✕ 不同意/disagree、- 沒意見/no comment </h2>  
         </hgroup>
 
         <input value="Submit" class="button" type="submit" />
@@ -45,19 +47,19 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
 ?>
 
 
-        <section class='<?=$c_id_key;?>'>
-          <div class='id'>1</div>
+        <section class='candidate'>
+          <div class='id'><?=$c_id_key;?></div>
           <div class='opinions'>
             <label>
-              <input name="selection_<?=$c_id_key;?>" value="1" type="radio" />
+              <input name="selection_<?=$c_id_value;?>" value="1" type="radio" />
               <div class='agree'>✓</div>
             </label>
             <label>
-              <input name="selection_<?=$c_id_key;?>" value="0" checked="checked" type="radio" />
+              <input name="selection_<?=$c_id_value;?>" value="0" checked="checked" type="radio" />
               <div class='none'>-</div>
             </label>
             <label>
-              <input name="selection_<?=$c_id_key;?>" value="-1" type="radio" />
+              <input name="selection_<?=$c_id_value;?>" value="-1" type="radio" />
               <div class='disagree'>✕</div>
             </label>
           </div>

@@ -45,6 +45,12 @@
 			$_SESSION['step'] = "";
 			$Controller->view("step1");
 			break;
+		case 'success':
+			//page for input password
+			$_SESSION['password'] = "";
+			$_SESSION['step'] = "";
+			$Controller->view("step0");
+			break;
 		case 'password_check':
 			//page for password form post destination
 			$votepage = new Vote_pwd_check;
@@ -53,21 +59,26 @@
 
 		case 'vote':
 			//page for voting
-
+			NTULog("password ".$_SESSION['password']." step[1,".sizeof(Get_votelist($_SESSION['password']))."]");
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
+			
+
 			if ($authkey!=$_GET['auth']) {
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
 			}else{
 				//pass csrf
 
+				if (sizeof(Get_votelist($_SESSION['password'])) < $_SESSION['step'] ){
+					header("Location:success");
+				}
 				$vote_r_id = Get_votelist($_SESSION['password']);
 				$vote_r_id = $vote_r_id[$_SESSION['step']];
 				//vote region
 
 				$votepage = new VotePage_main;
 
-				if (substr($vote_r_id, 1,1) == "B" || $vote_r_id=="C2") {
+				if (substr($vote_r_id, 0,1) == "B" || $vote_r_id=="C2") {
 					//multi
 					$votepage->vote_multi($vote_r_id);
 				}else{
@@ -80,13 +91,14 @@
 
 
 			}
+
 			break;
 
-		case 'vote_submit':
+		case 'vote_submit_single':
 			//page for vote result form post destination
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
-				NTULog("vote_submit page authkey not match for SESSION data.");
+				NTULog("vote_submit_single page authkey not match for SESSION data.");
 				header("Location:vote-auth");
 			}else{
 				if (isset($_POST['selection'])) {
@@ -98,13 +110,31 @@
 						
 					}
 
-
-					$thcketsubmit = new TicketSubmit;
-					$thcketsubmit->Ticket_Single_Submit($selection , $_POST['r_id']);
 				}else{
 					$selection = 0;
 				}
 
+
+
+				$thcketsubmit = new TicketSubmit;
+				$thcketsubmit->Ticket_Single_Submit($selection , $_POST['r_id']);
+				
+			}
+			break;
+
+
+		case 'vote_submit_multi':
+			//page for vote result form post destination
+			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
+			if ($authkey!=$_POST['authkey']) {
+				NTULog("vote_submit_multi page authkey not match for SESSION data.");
+				header("Location:vote-auth");
+			}else{
+
+					NTULog("Ticket_Multi_Submit _POST:".json_encode($_POST));
+					$thcketsubmit = new TicketSubmit;
+					$thcketsubmit->Ticket_Multi_Submit($_POST);
+				
 
 				
 			}

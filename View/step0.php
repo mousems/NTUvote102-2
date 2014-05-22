@@ -21,10 +21,21 @@
   <body class='step1'>
     <div class='wrapper'>
       <div class='content'>
-        <form action="" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
+        <form action="vote-auth" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
+
+          <input name="step" id="step" type="hidden" value="1" />
           <h1>102-2 NTU Voting</h1>
         </hgroup>
-        
+        <fieldset><div class='input'>
+          <div class='passwords'>
+
+              <h2>已完成，謝謝您的參與。<h2>
+              <h2>Success , Thank you!<h2>  
+          </div>
+        </div>
+        </fieldset>
+        <fieldset class="buttons"><input value="Finish ›" class="button" type="submit" />
+        </fieldset>
         </form>
       </div>
     </div>

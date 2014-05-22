@@ -27,7 +27,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
   <body class='step2'>
     <div class='wrapper'>
       <div class='content'>
-        <form action="vote_submit" accept-charset="UTF-8" class="step2-form" method="post"><hgroup>
+        <form action="vote_submit_single" accept-charset="UTF-8" class="step2-form" method="post"><hgroup>
           <h1>102-2 NTU Voting</h1>
           <h1><?=$title;?></h1>
           <h2><?=$title_en;?></h2>
