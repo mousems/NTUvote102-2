@@ -3,9 +3,59 @@
 * 
 */
 require_once("function.php");
-require_once("/var/www/Model/MySQL.php");
 
-class Vote extends MySQL {
+
+class Vote_pwd_check {
+	function __construct(){
+		global $loggerip;
+		$result = file_get_contents("https://".$loggerip."/testlink");
+		NTULog("testresult:".$result);
+
+		if (!preg_match("/ok/" , $result)) {
+			$this->errorMsg("無法連線到伺服器!cannot connect to server.");
+		}
+
+	}
+
+
+	function checkpassword($post_data){
+		global $loggerip;
+		$password = $post_data['password1'].$post_data['password2'].$post_data['password3'];
+		$password = strtoupper($password);
+
+		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		if ($result===0) {
+			$this->errorMsg("密碼格式錯誤！Password format wrong.");
+			return 0;
+		}
+		$result = file_get_contents("https://".$loggerip."/Controller/LoggerServer.php?action=getTicket&step=".$post_data['step']."&password=".$password);
+		NTULog("getTicket:$result");
+
+		if ($result=="1") {
+			$this->errorMsg("成功。");
+			return 1;
+		}else{
+			$this->errorMsg("密碼認證失敗！Login Failed.");
+			return 0;
+		}
+	}
+
+	function errorMsg($string) {
+        echo '<noscript>'.$string.'</noscript>';
+		echo '<script language="javascript">';
+  	    echo 'alert("'.$string.'");';
+  	    echo 'history.back();';
+  	    echo '</script>';
+	}
+
+}
+
+
+
+
+
+
+class VotePage_main {
 	var $candidate_data;
 
 	function __construct(){	
@@ -36,211 +86,7 @@ class Vote extends MySQL {
 		//
 		//			...
 		// }
-		$this->connect();
 
-	}
-
-	/*
-	// return 0:failed ,1:success , -1:locked
-
-	*/
-	function Check_ticket($step , $password){
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-
-		if ($result===0) {
-			NTULog(" Vote-check_ticket failed '$password' for password format");
-			return 0;
-		}
-
-		$result=preg_match("/(\d)/", $step);
-
-		if ($result===0) {
-			NTULog(" Vote-check_ticket failed '$step' for step format");
-			return 0;
-		}
-
-
-		$keyindex = get_keyindex($password) ;
-
-		$d1 = $matches[1];
-		$d2 = $matches[2];
-		$SQL = "SELECT * from `ticket` where `keyindex`='$keyindex'";
-
-		try {
-			$tmp = $this->query_row($SQL);
-		} catch (Exception $e) {
-			NTULog("warning MySQL failed");
-			return 0;
-		}
-
-		if (isset($tmp)) {
-			//password exists
-			$auth_fromuser = sha1($tmp[2].md5($password));
-			if ($auth_fromuser===$tmp[1]) {
-				if ($tmp[3]==0 || $tmp[3]<=date("U") ){
-					//pass auth		
-
-					$final_step = sizeof(Get_votelist($password));
-
-					if ($step>$final_step) {
-						NTULog(" Vote-check_ticket failed '$password' step wrong out of range");
-						return 0;
-					}
-
-					if ($step == $tmp[4]+1) {
-						return 1;
-					}else{
-						NTULog(" Vote-check_ticket failed '$password' step wrong");
-						NTULog(json_encode($tmp));
-						return 0;
-					}
-
-				}else{
-
-					NTULog(" Vote-check_ticket failed '$password' is already locked");
-					return -1;
-				}		
-
-			}else{
-				NTULog(" Vote-check_ticket failed '$password' match index but hash failed");
-				return 0;
-
-			}
-		}else{
-			NTULog(" Vote-check_ticket fail '$password' not found");
-			return 0;
-		}
-
-	}
-
-	function Lock_ticket($password){
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-
-		if ($result===0) {
-			NTULog(" Vote-Lock_ticket failed '$password' for fomat");
-			return 0;
-		}
-
-		$keyindex = get_keyindex($password) ;
-
-
-		$unlocktime = date("U")+180;
-
-		try {
-			$SQL = "UPDATE `ticket` SET `status`='$unlocktime' where `keyindex`='$keyindex'";
-
-			$this->query_row($SQL);
-			NTULog(" Vote-Lock_ticket locked successful '$password'");
-			return 1;
-		} catch (Exception $e) {
-			NTULog("warning Lock_ticket failed");
-			return 0;
-		}
-					//Lock
-	}
-
-	function Unlock_ticket($password){
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-
-		if ($result===0) {
-			NTULog(" Vote-Unlock_ticket failed '$password' for fomat");
-			return 0;
-		}
-
-		$keyindex = get_keyindex($password) ;
-		try {
-			$SQL = "UPDATE `ticket` SET `status`='0' where `keyindex`='$keyindex'";
-			$this->query_row($SQL);
-
-			return 1;
-		} catch (Exception $e) {
-			NTULog("warning Unlock_ticket failed");
-			return 0;
-		}
-		//Lock
-	}
-
-
-
-	function submitTicketSingle($step , $password , $cid){
-
-		global $candidate_data;
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-
-		if ($result===0) {
-			NTULog(" Vote-submit_ticket_single failed '$password' for password format");
-			return 0;
-		}
-
-		$result=preg_match("/(\d)/", $step);
-
-		if ($result===0) {
-			NTULog(" Vote-submit_ticket_single failed '$step' for step format");
-			return 0;
-		}
-
-		$result=preg_match("/([A-Z][\d]+)-[\d]+/", $cid , $votelistmatch);
-
-		if ($result===0) {
-			NTULog(" Vote-submit_ticket_single failed '$cid' for cid format");
-			return 0;
-		}
-
-
-		$keyindex = get_keyindex($password) ;
-
-		$votelist = Get_votelist($password);
-
-		preg_match("/([A-Z])(\d)+/" , $votelist[$step] , $checkmulti);
-		if ($votelist[$step]=="C2" || $checkmulti[1]=="B") {
-			NTULog(" must be multi for password $password  step $step");
-			return 0;
-		}
-
-
-		if ($votelistmatch[1]==$votelist[$step] ) {
-			
-			$checkresult = $this->Check_ticket($step , $password);
-		 	
-		 	if ($checkresult==-1 || $checkresult==1) {
-
-				try {
-					$SQL = "UPDATE `ticket` SET `step`='$step' where `keyindex`='$keyindex'";
-					$this->query_row($SQL);
-				} catch (Exception $e) {
-					NTULog("warning submit_ticket_single MYSQL failed");
-					return 0;
-				}
-
-				$this->Unlock_ticket($password);
-				
-				if (isset($candidate_data->{$cid})) {
-					
-					NTUvoteLog(" $cid");
-
-					return 1;
-				}else{
-
-					NTULog("warning submit_ticket_single cid not found $cid");
-					return 0;
-				}
-
-
-		 	}else{
-
-				NTULog("warning submit_ticket_single Check_ticket failed");
-				return 0;
-		 	}
-
-
-
-
-		}else{
-			NTULog(" Vote-submit_ticket_single failed '$cid' for cid format match");
-			return 0;
-		}
-
-		# code...
 	}
 
 	function getCidCount($step , $password){
@@ -303,88 +149,14 @@ class Vote extends MySQL {
 
 	}
 
-	/*
-		result_list:1,-1,0,1... for match each cid by password
-	*/
-	function submitTicketMulti($step , $password , $result_list){
-		global $candidate_data;
-		$result_list = explode(",",$result_list);
 
-		if ($this->getCidCount($step,$password) != sizeof($result_list)) {
-			NTULog(" Vote-submit_ticket_single failed '$password' '$step' '".json_encode($result_list)."' not match");
-			return 0;
-		}
-
-
-
-
-		//check pwd
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-		if ($result===0) {
-			NTULog(" Vote-submit_ticket_single failed '$password' for password format");
-			return 0;
-		}
-
-		$result=preg_match("/(\d)/", $step);
-
-		if ($result===0) {
-			NTULog(" Vote-submit_ticket_single failed '$step' for step format");
-			return 0;
-		}
-
-
-
-		$votelist = Get_votelist($password);
-
-		preg_match("/([A-Z])(\d)+/" , $votelist[$step] , $checkmulti);
-		if ($votelist[$step]=="C2" || $checkmulti[1]=="B") {
-			
-		}else{
-			NTULog(" must be single for password $password  step $step");
-			return 0;
-		}
-
-		$cidlist = $this->getCidList($step , $password);
-
-			
-		$checkresult = $this->Check_ticket($step , $password);
-	 	
-	 	if ($checkresult==1) {
-
-
-			try {
-			$keyindex = get_keyindex($password) ;
-				$SQL = "UPDATE `ticket` SET `step`='$step' where `keyindex`='$keyindex'";
-				$this->query_row($SQL);
-			} catch (Exception $e) {
-				NTULog("warning submit_ticket_single MYSQL failed");
-				return 0;
-			}
-
-			$this->Unlock_ticket($password);
-
-
-	 		foreach ($cidlist as $cidlist_key => $cidlist_value) {
-				NTUvoteLog(" ".$cidlist_value.":".$result_list[$cidlist_key]);
-
-	 		}
-			return 1;
-
-	 	}else{
-
-			NTULog("warning submit_ticket_single Check_ticket failed");
-			return 0;
-	 	}
-
-
-
-
-
+	function errorMsg($string) {
+        echo '<noscript>'.$string.'</noscript>';
+		echo '<script language="javascript">';
+  	    echo 'alert("'.$string.'");';
+  	    echo 'history.back();';
+  	    echo '</script>';
 	}
 
 
-
 }
-
-
-?>

@@ -12,6 +12,7 @@
     require_once(Controllers_DIR.'function.php');
     require_once(Controllers_DIR.'Controller.php');
     require_once(Controllers_DIR.'Vote.php');
+    require_once(Controllers_DIR.'Vote_page.php');
     require_once(Models_DIR.'MySQL.php');
     require_once(Models_DIR.'User_model.php');
 
@@ -32,10 +33,27 @@
 	$Controller = new Controller;
 
 	switch ($e_REDIRECT_URL[0]) {
-		case 'vote':
+		case 'testlink':
+			echo "ok";
+			break;
+
+
+		case 'vote-auth':
+			//page for input password
 			$Controller->view("step1");
 			break;
 		case 'password_check':
+			//page for password form post destination
+			$votepage = new Vote_pwd_check;
+			$votepage->checkpassword($_POST);
+			break;
+
+		case 'vote':
+			//page for voting
+			break;
+
+		case 'vote_submit':
+			//page for vote result form post destination
 
 			break;
 		case 'login':
@@ -49,7 +67,6 @@
 			break;
 		default:
 			$Controller->view("index");
-			session_destroy();
 			break;
 	}
 

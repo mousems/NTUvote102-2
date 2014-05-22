@@ -52,7 +52,8 @@
 				if ($password = $info['password']) {
 					NTULog(" login success : username:$username");
 					$_SESSION['uid'] = $info['id'];
-					header("Location:/vote");
+					NTULog(json_encode($_SESSION));
+					header("Location:/vote-auth");
 				}else{
 					NTULog(" login failed : username:$username password not match");
 					$msg = "帳號密碼錯誤";

@@ -10,6 +10,31 @@
 		return substr(md5($password), 1,10);
 	}
 	
+	function Get_votelist($password){
+
+		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+
+
+		$list1['A']=array(1=>'A1' ,2=>'B1');
+		$list1['B']=array(1=>'A1' ,2=>'B2');
+		$list1['C']=array(1=>'A1' ,2=>'B3' ,3=>'D1');
+		$list1['D']=array(1=>'A1' ,2=>'B4');
+		$list1['E']=array(1=>'A1' ,2=>'B5' ,3=>'D2');
+		$list1['F']=array(1=>'A1' ,2=>'B6' ,3=>'D3');
+		$list1['G']=array(1=>'A1' ,2=>'B7' ,3=>'D4');
+		$list1['H']=array(1=>'A1' ,2=>'B8');
+		$list1['I']=array(1=>'A1' ,2=>'B9');
+		$list1['J']=array(1=>'A1' ,2=>'B10' ,3=>'D5');
+		$list1['K']=array(1=>'A1');
+
+		if ($matches[2]>=5) {
+			array_push($list1[$matches[1]] , 'C1');
+			array_push($list1[$matches[1]] , 'C2');
+		}
+
+		return $list1[$matches[1]];
+
+	}
 	function get_client_ip(){
 		try {
 			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
