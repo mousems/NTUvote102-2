@@ -27,22 +27,22 @@ class MySQL {
 	function query($sql) {
 		global $link;
 		//return mysqli_query($link, $sql) or die("execute sql fail!!");
-		return mysqli_query($link, $sql) or die(mysqli_error($link));
+		return @mysqli_query($link, $sql) or die(mysqli_error($link));
 	}
 	function query_row($sql) {
 		global $link;
 		$result = mysqli_query($link, $sql) or die("execute sql failed!!");
-		return mysqli_fetch_row($result);
+		return @mysqli_fetch_row($result);
 	}
 	function query_array($sql) {
 		global $link;
 		$result = mysqli_query($link, $sql) or die("execute sql failed!!");
-		return mysqli_fetch_array($result);
+		return @mysqli_fetch_array($result);
 	}
 	function query_assoc($sql){
 		global $link;
 		$result = mysqli_query($link, $sql) or die("execute sql failed!!");
-		return mysqli_fetch_assoc($result);
+		return @mysqli_fetch_assoc($result);
 	}
 }
 

@@ -37,12 +37,12 @@
 			$password = $new_str['password'];
 
 
-			NTUvoteLog(json_encode($new_str));
-			NTUvoteLog(" is try to login : username:$username");
+			NTULog(json_encode($new_str));
+			NTULog(" is try to login : username:$username");
 
 			$sql = "SELECT * FROM account WHERE username = '$username'";
 			$info = MySQL::query_array($sql);
-			NTUvoteLog(json_encode($info));
+			NTULog(json_encode($info));
 
 
 			if (isset($info)) {
@@ -50,17 +50,17 @@
 				$password = User_Model::hash($password , $info['salt']);
 
 				if ($password = $info['password']) {
-					NTUvoteLog(" login success : username:$username");
+					NTULog(" login success : username:$username");
 					$_SESSION['uid'] = $info['id'];
 					header("Location:/vote");
 				}else{
-					NTUvoteLog(" login failed : username:$username password not match");
+					NTULog(" login failed : username:$username password not match");
 					$msg = "帳號密碼錯誤";
 					User_Model::errorMsg($msg);
 				}
 
 			}else{
-				NTUvoteLog(" login failed : username:$username notfound");
+				NTULog(" login failed : username:$username notfound");
 				$msg = "帳號密碼錯誤";
 				User_Model::errorMsg($msg);
 			}
