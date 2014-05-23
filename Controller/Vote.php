@@ -47,14 +47,17 @@ class Vote extends MySQL {
 	function Check_ticket($step , $password){
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-check_ticket failed '$password' for password format");
 			return 0;
 		}
 
 		$result=preg_match("/(\d)/", $step);
 
-		if ($result===0) {
+		
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-check_ticket failed '$step' for step format");
 			return 0;
 		}
@@ -116,8 +119,9 @@ class Vote extends MySQL {
 	function Lock_ticket($password){
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
 
-		if ($result===0) {
-			NTULog(" Vote-Lock_ticket failed '$password' for fomat");
+
+		if ($result===1) {
+		}else{			NTULog(" Vote-Lock_ticket failed '$password' for fomat");
 			return 0;
 		}
 
@@ -142,7 +146,9 @@ class Vote extends MySQL {
 	function Unlock_ticket($password){
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
 
-		if ($result===0) {
+
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-Unlock_ticket failed '$password' for fomat");
 			return 0;
 		}
@@ -167,21 +173,25 @@ class Vote extends MySQL {
 		global $candidate_data;
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
 
-		if ($result===0) {
+
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-submit_ticket_single failed '$password' for password format");
 			return 0;
 		}
 
 		$result=preg_match("/(\d)/", $step);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-submit_ticket_single failed '$step' for step format");
 			return 0;
 		}
 
 		$result=preg_match("/([A-Z][\d]+)-[\d]+/", $cid , $votelistmatch);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-submit_ticket_single failed '$cid' for cid format");
 			return 0;
 		}
@@ -247,14 +257,16 @@ class Vote extends MySQL {
 		global $candidate_data;
 		//check pwd
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-getCidCount failed '$password' for password format");
 			return 0;
 		}
 
 		$result=preg_match("/(\d)/", $step);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-getCidCount failed '$step' for step format");
 			return 0;
 		}
@@ -276,14 +288,16 @@ class Vote extends MySQL {
 		global $candidate_data;
 		//check pwd
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-getCidCount failed '$password' for password format");
 			return 0;
 		}
 
 		$result=preg_match("/(\d)/", $step);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-getCidCount failed '$step' for step format");
 			return 0;
 		}
@@ -320,14 +334,16 @@ class Vote extends MySQL {
 
 		//check pwd
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-submitTicketMulti failed '$password' for password format");
 			return 0;
 		}
 
 		$result=preg_match("/(\d)/", $step);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-submitTicketMulti failed '$step' for step format");
 			return 0;
 		}

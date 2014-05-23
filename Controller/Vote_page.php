@@ -23,7 +23,8 @@ class Vote_pwd_check {
 		$password = strtoupper($password);
 
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			$this->errorMsg("密碼格式錯誤！Password format wrong.");
 			return 0;
 		}
@@ -146,14 +147,16 @@ class VotePage_main {
 		global $candidate_data;
 		//check pwd
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-getCidCount failed '$password' for password format");
 			return 0;
 		}
 
 		$result=preg_match("/(\d)/", $step);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
 			NTULog(" Vote-getCidCount failed '$step' for step format");
 			return 0;
 		}
@@ -175,14 +178,18 @@ class VotePage_main {
 		global $candidate_data;
 		//check pwd
 		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
-		if ($result===0) {
+		if ($result===1) {
+		}else{
+
 			NTULog(" Vote-getCidCount failed '$password' for password format");
 			return 0;
 		}
 
 		$result=preg_match("/(\d)/", $step);
 
-		if ($result===0) {
+		if ($result===1) {
+		}else{
+
 			NTULog(" Vote-getCidCount failed '$step' for step format");
 			return 0;
 		}
