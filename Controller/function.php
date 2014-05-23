@@ -37,28 +37,33 @@
 		return $list1[$matches[1]];
 
 	}
+
 	function get_client_ip(){
-		try {
-			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-		        $ip = $_SERVER['HTTP_CLIENT_IP'];
-		    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		    } elseif (!empty($_SERVER['HTTP_X_FORWARDED'])) {
-		        $ip = $_SERVER['HTTP_X_FORWARDED'];
-		    } elseif (!empty($_SERVER['HTTP_X_CLUSTER_CLIENT_IP'])) {
-		        $ip = $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
-		    } elseif (!empty($_SERVER['HTTP_FORWARDED_FOR'])) {
-		        $ip = $_SERVER['HTTP_FORWARDED_FOR'];
-		    } elseif (!empty($_SERVER['HTTP_FORWARDED'])) {
-		        $ip = $_SERVER['HTTP_FORWARDED'];
-		    } else {
-		        $ip = $_SERVER['REMOTE_ADDR'];
-		    }
-		} catch (Exception $e) {
-			$ip = "noip";
+		// You should log all IP istead of log single IP
+		// and beware of injection form IP
+		// All source can be faked easily except "REMOTE_ADDR"
+		$source = array(
+			"HTTP_CLIENT_IP",
+			"HTTP_X_FORWARDED_FOR",
+			"HTTP_X_FORWARDED",
+			"HTTP_X_CLUSTER_CLIENT_IP",
+			"HTTP_FORWARDED_FOR",
+			"HTTP_FORWARDED",
+			"REMOTE_ADDR"
+		);
+		$ip = array();
+	
+		foreach ($source as $src) {
+			$val = $_SERVER[$src];
+			if (filter_var($val, FILTER_VALIDATE_IP) ||
+				filter_var($val, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+					$ip[] = $val;
+				} else {
+					$ip[] = "";
+				}
 		}
-	    
-	    return $ip;
+	
+		return implode(";", $ip);
 	}
 
 	function NTULog($msg,$ECHO=false){
