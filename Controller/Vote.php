@@ -192,7 +192,7 @@ class Vote extends MySQL {
 		$votelist = Get_votelist($password);
 
 		preg_match("/([A-Z])(\d)+/" , $votelist[$step] , $checkmulti);
-		if ($votelist[$step]=="C2" || $checkmulti[1]=="B") {
+		if ($checkmulti[1]=="B") {
 			NTULog(" must be multi for password $password  step $step");
 			return 0;
 		}
@@ -337,7 +337,7 @@ class Vote extends MySQL {
 		$votelist = Get_votelist($password);
 
 		preg_match("/([A-Z])(\d)+/" , $votelist[$step] , $checkmulti);
-		if ($votelist[$step]=="C2" || $checkmulti[1]=="B") {
+		if ($checkmulti[1]=="B") {
 			
 		}else{
 			NTULog(" must be single for password $password  step $step");
