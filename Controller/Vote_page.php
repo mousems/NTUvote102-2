@@ -11,7 +11,7 @@ class Vote_pwd_check {
 		$result = file_get_contents("https://".$loggerip."/testlink");
 
 		if (!preg_match("/ok/" , $result)) {
-			$this->errorMsg("無法連線到伺服器!cannot connect to server.");
+			$this->errorMsg("無法連線到伺服器! Could not connect to server.");
 		}
 
 	}
@@ -25,7 +25,7 @@ class Vote_pwd_check {
 		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 		if ($result===1) {
 		}else{
-			$this->errorMsg("密碼格式錯誤！Password format wrong.");
+			$this->errorMsg("密碼格式錯誤！ Invalid password format.");
 			return 0;
 		}
 		$result = file_get_contents("https://".$loggerip."/Controller/LoggerServer.php?action=getTicket&step=".$post_data['step']."&password=".$password);
@@ -36,7 +36,7 @@ class Vote_pwd_check {
 		if ($result=="1") {
 			header("Location:vote?auth=".get_keyindex($post_data['step'].$password));
 		}else{
-			$this->errorMsg("密碼認證失敗！Login Failed.");
+			$this->errorMsg("密碼認證失敗！ Login Failed.");
 			return 0;
 		}
 	}
