@@ -45,7 +45,7 @@ class Vote extends MySQL {
 
 	*/
 	function Check_ticket($step , $password){
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 
 		if ($result===1) {
 		}else{
@@ -53,7 +53,7 @@ class Vote extends MySQL {
 			return 0;
 		}
 
-		$result=preg_match("/(\d)/", $step);
+		$result=preg_match("/^(\d)$/", $step);
 
 		
 		if ($result===1) {
@@ -64,7 +64,7 @@ class Vote extends MySQL {
 
 
 		$keyindex = get_keyindex($password) ;
-
+		NTULog("keyindex:".$keyindex);
 		$d1 = $matches[1];
 		$d2 = $matches[2];
 		$SQL = "SELECT * from `ticket` where `keyindex`='$keyindex'";
@@ -117,7 +117,7 @@ class Vote extends MySQL {
 	}
 
 	function Lock_ticket($password){
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 
 
 		if ($result===1) {
@@ -144,7 +144,7 @@ class Vote extends MySQL {
 	}
 
 	function Unlock_ticket($password){
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 
 
 		if ($result===1) {
@@ -171,7 +171,7 @@ class Vote extends MySQL {
 	function submitTicketSingle($step , $password , $cid){
 
 		global $candidate_data;
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 
 
 		if ($result===1) {
@@ -180,7 +180,7 @@ class Vote extends MySQL {
 			return 0;
 		}
 
-		$result=preg_match("/(\d)/", $step);
+		$result=preg_match("/^(\d)$/", $step);
 
 		if ($result===1) {
 		}else{
@@ -256,14 +256,14 @@ class Vote extends MySQL {
 	function getCidCount($step , $password){
 		global $candidate_data;
 		//check pwd
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 		if ($result===1) {
 		}else{
 			NTULog(" Vote-getCidCount failed '$password' for password format");
 			return 0;
 		}
 
-		$result=preg_match("/(\d)/", $step);
+		$result=preg_match("/^(\d)$/", $step);
 
 		if ($result===1) {
 		}else{
@@ -287,14 +287,14 @@ class Vote extends MySQL {
 	function getCidList($step , $password){
 		global $candidate_data;
 		//check pwd
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 		if ($result===1) {
 		}else{
 			NTULog(" Vote-getCidCount failed '$password' for password format");
 			return 0;
 		}
 
-		$result=preg_match("/(\d)/", $step);
+		$result=preg_match("/^(\d)$/", $step);
 
 		if ($result===1) {
 		}else{
@@ -333,14 +333,14 @@ class Vote extends MySQL {
 
 
 		//check pwd
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 		if ($result===1) {
 		}else{
 			NTULog(" Vote-submitTicketMulti failed '$password' for password format");
 			return 0;
 		}
 
-		$result=preg_match("/(\d)/", $step);
+		$result=preg_match("/^(\d)$/", $step);
 
 		if ($result===1) {
 		}else{

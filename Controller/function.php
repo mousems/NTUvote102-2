@@ -11,10 +11,9 @@
 	}
 
 
-
 	function Get_votelist($password){
 
-		$result=preg_match("/([A-Z])(\d)[A-Z]{8}/", $password , $matches);
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 
 
 		$list1['A']=array(1=>'A1' ,2=>'B1');
