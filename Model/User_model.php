@@ -85,7 +85,7 @@
 
 		function errorMsg($string) {
 	        echo '<noscript>'.$string.'</noscript>';
-			echo '<script language="javascript">';
+			echo '<script type="text/javascript">';
 	  	    echo 'alert("'.$string.'");';
 	  	    echo 'history.back();';
 	  	    echo '</script>';
