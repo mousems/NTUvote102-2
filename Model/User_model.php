@@ -58,7 +58,7 @@
 
 				$password = User_Model::hash($password , $info['salt']);
 
-				if ($password = $info['password']) {
+				if ($password === $info['password']) {
 					NTULog(" login success : username:$username");
 					$_SESSION['uid'] = $info['id'];
 					NTULog(json_encode($_SESSION));
