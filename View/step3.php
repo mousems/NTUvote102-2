@@ -5,7 +5,7 @@
 // input auth_key , r_id
 
 if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
-  header("vote-auth");
+  header("Location:vote-auth");
 }
 
 @session_start();
