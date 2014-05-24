@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class='han-la' lang='zh-tw'>
+<html lang='zh-tw'>
   <head>
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
@@ -30,7 +30,7 @@
           <div class='passwords'>
 
               <h2>已完成，謝謝您的參與。<h2>
-              <h2>Success , Thank you!<h2>  
+              <h2>Success , Thank you!<h2>
           </div>
         </div>
         </fieldset>
