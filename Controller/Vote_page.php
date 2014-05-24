@@ -34,7 +34,7 @@ class Vote_pwd_check {
 		$_SESSION['step'] = $post_data['step'];
 		$_SESSION['password'] = $password;
 		if ($result=="1") {
-			header("Location:vote?auth=".get_keyindex($post_data['step'].$password));
+			header("Location:vote?auth=".get_keyindex($_SESSION['salt'].$post_data['step'].$password));
 		}else{
 			$this->errorMsg("密碼認證失敗！ Login Failed.");
 			return 0;
@@ -103,7 +103,7 @@ class VotePage_main {
 
 		$c_id_arr = array();
 		$c_name_arr = array();
-		$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$r_id);
+		$authkey = get_keyindex($_SESSION['salt'].$_SESSION['step'].$_SESSION['password'].$r_id);
 
 
 		foreach ($candidate_data as $candidate_cid => $candidate_value) {
@@ -125,7 +125,7 @@ class VotePage_main {
 
 		$c_id_arr = array();
 		$c_name_arr = array();
-		$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$r_id);
+		$authkey = get_keyindex($_SESSION['salt'].$_SESSION['step'].$_SESSION['password'].$r_id);
 
 
 		foreach ($candidate_data as $candidate_cid => $candidate_value) {
