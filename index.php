@@ -60,6 +60,10 @@
 		case 'vote':
 			//page for voting
 			NTULog("password ".$_SESSION['password']." step[1,".sizeof(Get_votelist($_SESSION['password']))."]");
+			if (!isset($_SESSION['password'])) {
+				NTULog("vote page authkey not match for SESSION data.");
+				header("Location:vote-auth");
+			}
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
 			
 
@@ -96,6 +100,10 @@
 
 		case 'vote_submit_single':
 			//page for vote result form post destination
+			if (!isset($_SESSION['password'])) {
+				NTULog("vote page authkey not match for SESSION data.");
+				header("Location:vote-auth");
+			}
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
 				NTULog("vote_submit_single page authkey not match for SESSION data.");
@@ -125,6 +133,10 @@
 
 		case 'vote_submit_multi':
 			//page for vote result form post destination
+			if (!isset($_SESSION['password'])) {
+				NTULog("vote page authkey not match for SESSION data.");
+				header("Location:vote-auth");
+			}
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
 				NTULog("vote_submit_multi page authkey not match for SESSION data.");
