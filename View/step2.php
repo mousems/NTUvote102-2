@@ -15,7 +15,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
 ?>
 
 <!DOCTYPE html>
-<html class='han-la' lang='zh-tw'>
+<html lang='zh-tw'>
   <head>
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
@@ -35,7 +35,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
         <input value="Submit" class="button" type="submit" />
 
         <input name="authkey" id="authkey" type="hidden" value="<?=$authkey;?>"/>
-  
+
         <input name="r_id" id="r_id" type="hidden" value="<?=$r_id;?>"/>
 
         <input name="selection" id="selection" type="hidden" value="0"/>
@@ -45,7 +45,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
 <?php
 
         foreach ($c_id_arr as $c_id_key => $c_id_value) {
-          
+
 ?>
 
         <section class='candidate selection'>

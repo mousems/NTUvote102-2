@@ -7,7 +7,7 @@ NTULog(json_encode($_SESSION));
 ?>
 
 <!DOCTYPE html>
-<html class='han-la' lang='zh-tw'>
+<html lang='zh-tw'>
   <head>
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
