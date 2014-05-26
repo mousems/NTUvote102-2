@@ -1,6 +1,6 @@
 <?php
 @session_start();
-NTULog(json_encode($_SESSION));
+session_destroy();
     if ($_SESSION['uid'] == NULL) {
         header("Location:/");
     }
@@ -9,7 +9,7 @@ NTULog(json_encode($_SESSION));
 <!DOCTYPE html>
 <html lang='zh-tw'>
   <head>
-    <meta charset='utf-8'>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <title>NTU Vote</title>
@@ -37,8 +37,14 @@ NTULog(json_encode($_SESSION));
           </div>
         </div>
         </fieldset>
-        <fieldset class="buttons"><input value="Proceed ›" class="button" type="submit" />
+
+        <fieldset class="buttons">
+          <p>授權碼為十位亂數，僅第二位為數字，其餘為大寫英文字母。</p>
+          <p>The auth code is 10 digits , only no.2 digit is number , others is upper case letter.</p>
+          <input value="Proceed ›" class="button" type="submit" />
         </fieldset>
+        
+        
         </form>
       </div>
     </div>

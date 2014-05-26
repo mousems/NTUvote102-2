@@ -16,7 +16,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
 <!DOCTYPE html>
 <html lang='zh-tw'>
   <head>
-    <meta charset='utf-8'>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <title>NTU Vote</title>
