@@ -6,9 +6,9 @@
 // -------------------------------------
 
 $RB-size: 66px;
-$red: #f2dede;
-$green: #dff0d8;
-$blue: #d9edf7;
+$red: hsl(360, 61%, 60%);
+$green: hsl(115, 57%, 60%);
+$blue: hsl(200, 65%, 91%);
 
 @font-face {
 	font-family: 'Montserrat';
@@ -256,6 +256,7 @@ fieldset {
 	@include transition-duration(5s, .2s, .2s);
 	@include transition-timing-function(ease-in-out, ease, ease);
 	position: relative;
+	overflow: hidden;
 	top: 0;
 	padding: 12px;
 	margin-top: 0;
@@ -310,6 +311,7 @@ fieldset {
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-color: #eee;
+			border: 1px solid #aaa;
 		}
 	}
 
@@ -320,85 +322,122 @@ fieldset {
 
 	.opinions {
 		margin-top: 8px;
+		margin-bottom: 18px;
+		height: $RB-size;
 
 		label {
 			display: inline-block;
+			@include box-sizing(content-box);
 			position: relative;
 			width: $RB-size;
 			height: $RB-size;
 			// font-family: 'icons';
 			@include border-radius(33px);
 			// @include background(linear-gradient(top, rgba(0,0,0, 0), rgba(0,0,0, .2)));
-			background-color: #eee;
-			overflow: hidden;
+			// background-color: #eee;
+			// overflow: hidden;
+			border: 2px solid #ccc;
 
 			&:hover {
-				background-color: #cecece;
+				border: 2px solid #888;
 			}
 
+			$opinions-inner-margin: 2px;
 			div {
 				position: relative;
-				width: $RB-size - 24;
-				height: $RB-size - 24;
-				margin: 12px;
-				top: -2px;
+				width: $RB-size - $opinions-inner-margin*2;
+				height: $RB-size - $opinions-inner-margin*2;
+				margin: $opinions-inner-margin;
+				// top: $opinions-inner-margin;
+				// left: $opinions-inner-margin;
 				font-size: $RB-size - 36;
-				line-height: $RB-size - 24;
+				line-height: $RB-size - $opinions-inner-margin*2;
 				@include border-radius(33px);
-				@include box-shadow(0 2px 0 rgba(0,0,0, .3), 0 1px 6px rgba(0,0,0, .6));
-				background-color: #ddd;
-				color: darken(#ddd, 10%);
+				// @include box-shadow(0 2px 0 rgba(0,0,0, .3), 0 1px 6px rgba(0,0,0, .6));
+				background-color: #dedede;
+				color: #555;
 				// border: 1px solid darken($green, 20%);
+				@include transition-property(width, height, line-height, margin, background-color, color);
+				@include transition-duration(.3s, .3s, .3s, .3s, .5s, .5s);
 			}
 
 			.agree {
 				// background-color: $green;
 				// color: darken($green, 30%);
 				// border: 1px solid darken($green, 20%);
-				border: 1px solid darken($green, 40%);
-				@include box-shadow(0 2px 0 darken($green, 60%), 0 1px 6px rgba(0,0,0, .6));
+				// border: 1px solid darken($green, 40%);
+				// @include box-shadow(0 2px 0 darken($green, 60%), 0 1px 6px rgba(0,0,0, .6));
 			}
 
 			.none {
 				// background-color: $blue;
 				// color: darken($blue, 30%);
 				// border: 1px solid darken($blue, 20%);
-				border: 1px solid darken($blue, 40%);
-				@include box-shadow(0 2px 0 darken($blue, 60%), 0 1px 6px rgba(0,0,0, .6));
+				// border: 1px solid darken($blue, 40%);
+				// @include box-shadow(0 2px 0 darken($blue, 60%), 0 1px 6px rgba(0,0,0, .6));
 			}
 
 			.disagree {
 				// background-color: $red;
 				// color: darken($red, 30%);
 				// border: 1px solid darken($red, 20%);
-				border: 1px solid darken($red, 40%);
-				@include box-shadow(0 2px 0 darken($red, 60%), 0 1px 6px rgba(0,0,0, .6));
+				// border: 1px solid darken($red, 40%);
+				// @include box-shadow(0 2px 0 darken($red, 60%), 0 1px 6px rgba(0,0,0, .6));
+			}
+
+			input {
+
+				+ div::before {
+					content: " ";
+					display: block;
+					position: absolute;
+					top: -5555px;
+					left: -5555px;
+					width: 9999px;
+					height: 9999px;
+					pointer-events: none;
+					background-color: rgba(#fff, 0);
+					@include transition-property(background-color);
+					@include transition-duration(1.8s);
+					@include transition-delay(.5s);
+				}
 			}
 
 			input:checked {
 				// @include opacity(1);
 
 				+ div {
-					@include box-shadow(0 1px 5px rgba(0,0,0, .6) inset);
-					top: 0;
+					$opinions-inner-margin: 4px;
+					width: $RB-size - $opinions-inner-margin*2;
+					height: $RB-size - $opinions-inner-margin*2;
+					margin: $opinions-inner-margin;
+					line-height: $RB-size - $opinions-inner-margin*2;
 				}
 
 				+ .agree {
-					background-color: $green;
-					color: darken($green, 30%);
-					border: 1px solid darken($green, 20%);
+					color: $green;
+					background-color: darken($green, 30%);
+					// border: 1px solid darken($green, 20%);
+
+					&::before {
+						background-color: rgba($green, .18);
+					}
 				}
 
 				+ .none {
-					background-color: $blue;
-					color: darken($blue, 30%);
-					border: 1px solid darken($blue, 20%);
+					color: $blue;
+					background-color: darken($blue, 30%);
+					// border: 1px solid darken($blue, 20%);
 				}
 
 				+ .disagree {
-					background-color: $red;
-					color: darken($red, 30%);
-					border: 1px solid darken($red, 20%);
+					color: $red;
+					background-color: darken($red, 30%);
+					// border: 1px solid darken($red, 20%);
+
+					&::before {
+						background-color: rgba($red, .18);
+					}
 				}
 			}
 
