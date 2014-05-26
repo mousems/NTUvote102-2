@@ -10,7 +10,6 @@
 		
 		function __construct(){
 			global $loggerip;
-			NTULog("https://".$loggerip."/testlink");
 			$result = file_get_contents("https://".$loggerip."/testlink");
 
 			if (!preg_match("/ok/" , $result)) {
@@ -78,7 +77,7 @@
 				$_SESSION['step']++;
 				$this->StoreTicket_single($selection , $r_id);
 
-				$authkey = get_keyindex($_SESSION['salt'].$_SESSION['step'].$_SESSION['password']);
+				$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
 
 				header("Location:vote?auth=".$authkey);
 
@@ -120,7 +119,7 @@
 				$_SESSION['step']++;
 				$this->StoreTicket_multi($candidate_select_result , $post['r_id']);
 
-				$authkey = get_keyindex($_SESSION['salt'].$_SESSION['step'].$_SESSION['password']);
+				$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
 
 				header("Location:vote?auth=".$authkey);
 
