@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <title>NTU Voting</title>
+    <title>NTU Vote</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="css/all.css" rel="stylesheet" type="text/css" />
     <script src="js/modernizr.js" type="text/javascript"></script>
     <script>
@@ -27,22 +27,22 @@
         <fieldset>
           <div class='input'>
             <div class='label'>
-              Username
+              使用者 / Username
             </div>
             <div class='passwords'>
-              <input name="username" id="username" maxlength="12" autofocus="autofocus" type="text" />
+              <input name="username" id="username" maxlength="12" autofocus="autofocus" autocomplete="off" type="text" />
             </div>
             <br />
 
             <div class='label'>
-              Password
+              密碼 / Password
             </div>
             <div class='passwords'>
-              <input name="password" id="password" maxlength="12" autofocus="autofocus" type="password" />
+              <input name="password" id="password" maxlength="12" autocomplete="off" type="password" />
             </div>
-            
+
           </div>
-          <fieldset class="buttons"><input value="Login >" class="button" type="submit" />
+          <fieldset class="buttons"><input value="Login ›" class="button" type="submit" />
         </fieldset>
         </form>
       </div>
