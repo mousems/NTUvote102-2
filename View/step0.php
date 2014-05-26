@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <title>NTU Voting</title>
+    <title>NTU Vote</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="css/all.css" rel="stylesheet" type="text/css" />
     <script src="js/modernizr.js" type="text/javascript"></script>
     <script>
@@ -24,13 +24,13 @@
         <form action="vote-auth" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
 
           <input name="step" id="step" type="hidden" value="1" />
-          <h1>102-2 NTU Voting</h1>
+          <h1>102-2 NTU Vote</h1>
         </hgroup>
         <fieldset><div class='input'>
           <div class='passwords'>
 
               <h2>已完成，謝謝您的參與。<h2>
-              <h2>Success , Thank you!<h2>
+              <h2>Vote succeeded. Thanks for your participation.<h2>
           </div>
         </div>
         </fieldset>
