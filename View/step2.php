@@ -20,15 +20,15 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <title>NTU Voting</title>
-    <link href="/css/all.css" rel="stylesheet" type="text/css" />
+    <title>NTU Vote</title>
+    <link href="css/all.css" rel="stylesheet" type="text/css" />
     <script src="/js/modernizr.js" type="text/javascript"></script>
   </head>
   <body class='step2'>
     <div class='wrapper'>
       <div class='content'>
         <form action="vote_submit_single" accept-charset="UTF-8" class="step2-form" method="post"><hgroup>
-          <h1>102-2 NTU Voting</h1>
+          <h1>102-2 NTU Vote</h1>
           <h1><?=$title;?></h1>
           <h2><?=$title_en;?></h2>
         </hgroup>

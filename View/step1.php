@@ -12,7 +12,7 @@ NTULog(json_encode($_SESSION));
     <meta charset='utf-8'>
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <title>NTU Voting</title>
+    <title>NTU Vote</title>
     <link href="css/all.css" rel="stylesheet" type="text/css" />
     <script src="js/modernizr.js" type="text/javascript"></script>
   </head>
@@ -22,18 +22,18 @@ NTULog(json_encode($_SESSION));
         <form action="password_check" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
 
           <input name="step" id="step" type="hidden" value="1" />
-          <h1>102-2 NTU Voting</h1>
+          <h1>102-2 NTU Vote</h1>
         </hgroup>
         <fieldset><div class='input'>
           <div class='label'>
-            Password
+            授權碼 / Auth Code
           </div>
           <div class='passwords'>
-            <input name="password1" id="password1" maxlength="4" autofocus="autofocus" type="text" />
+            <input name="password1" id="password1" maxlength="4" autofocus="autofocus" autocomplete="off" type="text" />
             <span>-</span>
-            <input name="password2" id="password2" maxlength="3" type="text" />
+            <input name="password2" id="password2" maxlength="3" autocomplete="off" type="text" />
             <span>-</span>
-            <input name="password3" id="password3" maxlength="3" type="text" />
+            <input name="password3" id="password3" maxlength="3" autocomplete="off" type="text" />
           </div>
         </div>
         </fieldset>

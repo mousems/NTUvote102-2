@@ -61,7 +61,6 @@
 				if ($password === $info['password']) {
 					NTULog(" login success : username:$username");
 					$_SESSION['uid'] = $info['id'];
-					$_SESSION['salt'] = $info['salt'];
 					NTULog(json_encode($_SESSION));
 					header("Location:/vote-auth");
 				}else{

@@ -64,7 +64,7 @@
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
 			}
-			$authkey = get_keyindex($_SESSION['salt'].$_SESSION['step'].$_SESSION['password']);
+			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
 			
 
 			if ($authkey!=$_GET['auth']) {
@@ -104,18 +104,19 @@
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
 			}
-			$authkey = get_keyindex($_SESSION['salt'].$_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
+			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
 				NTULog("vote_submit_single page authkey not match for SESSION data.");
 				header("Location:vote-auth");
 			}else{
 				if (isset($_POST['selection'])) {
-					$selection = $_POST['selection']; // int
+					
 
-					if (!preg_match("/\d/", $selection)) {
+					if (preg_match("/^\d$/", $_POST['selection'])==0) {
 						NTULog("vote_submit page selection variables not match for integer.");
-						header("Location:vote-auth");
-						
+						$selection = 0;						
+					}else{
+						$selection = $_POST['selection']; // int
 					}
 
 				}else{
@@ -137,7 +138,7 @@
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
 			}
-			$authkey = get_keyindex($_SESSION['salt'].$_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
+			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
 				NTULog("vote_submit_multi page authkey not match for SESSION data.");
 				header("Location:vote-auth");

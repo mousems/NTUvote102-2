@@ -102,24 +102,24 @@ foreach ($a as $key => $value) {
 
 
 
-$a="學生會會長	President of NTUSA	A1
-文學院學代	English title	B1
-理學院學代	English title	B2
-社科院學代	English title	B3
-醫學院學代	English title	B4
-工學院學代	English title	B5
-生農院學代	English title	B6
-管院學代	English title	B7
-公衛院學代	English title	B8
-電資院學代	English title	B9
-法學院學代	English title	B10
-研協會會長	English title	C1
-研究生代表	English title	C2
-社科院學生會長	English title	D1
-工學院學生會長	English title	D2
-生農學院學生會會長	English title	D3
-管院學生會長	English title	D4
-法學院學生會長	English title	D5";
+$a="學生會會長	President of Student Association	A1
+文學院學代	Student Representative of College of Liberal Arts	B1
+理學院學代	Student Representative of College of Science	B2
+社科院學代	Student Representative of College of Social Sciences	B3
+醫學院學代	Student Representative of College of Medicine	B4
+工學院學代	Student Representative of College of Engineering	B5
+生農院學代	Student Representative of College of Bio-Resources & Agriculture	B6
+管院學代	Student Representative of College of Management	B7
+公衛院學代	Student Representative of College of Public Health	B8
+電資院學代	Student Representative of College of EE & CS	B9
+法學院學代	Student Representative of College of Law	B10
+研協會會長	President of Graduate Student Association	C1
+研究生代表	Student Representative of Graduate Student Association	C2
+社科院學生會長	President of College of Social Sciences Student Association	D1
+工學院學生會長	President of Engineering Student Association	D2
+生農學院學生會會長	President of College of Bio-Resources & Agriculture Student Association	D3
+管院學生會長	President of College of Management Student Association	D4
+法學院學生會長	President of College of Law Student Association	D5";
 
 $a = explode("\n", $a);
 $b = new stdClass;
