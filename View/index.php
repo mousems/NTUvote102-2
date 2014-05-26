@@ -5,7 +5,7 @@
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <title>NTU Voting</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="css/all.css" rel="stylesheet" type="text/css" />
+    <link href="css/all.css" rel="stylesheet" type="text/css" />
     <script src="js/modernizr.js" type="text/javascript"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -40,7 +40,7 @@
             <div class='passwords'>
               <input name="password" id="password" maxlength="12" autofocus="autofocus" type="password" />
             </div>
-            
+
           </div>
           <fieldset class="buttons"><input value="Login >" class="button" type="submit" />
         </fieldset>

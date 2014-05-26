@@ -10,6 +10,19 @@ $red: #f2dede;
 $green: #dff0d8;
 $blue: #d9edf7;
 
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Montserrat-Regular'), url(fonts/Montserrat400.woff) format('woff');
+}
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Montserrat-Bold'), url(fonts/Montserrat800.woff) format('woff');
+}
+
 // -------------------------------------
 //   Susy
 // -------------------------------------

@@ -13,7 +13,7 @@ NTULog(json_encode($_SESSION));
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <title>NTU Voting</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="css/all.css" rel="stylesheet" type="text/css" />
+    <link href="css/all.css" rel="stylesheet" type="text/css" />
     <script src="js/modernizr.js" type="text/javascript"></script>
   </head>
   <body class='step1'>
