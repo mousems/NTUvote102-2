@@ -30,7 +30,7 @@
               Username
             </div>
             <div class='passwords'>
-              <input name="username" id="username" maxlength="12" autofocus="autofocus" type="text" />
+              <input name="username" id="username" maxlength="12" autofocus="autofocus" autocomplete="off" type="text" />
             </div>
             <br />
 
@@ -38,11 +38,11 @@
               Password
             </div>
             <div class='passwords'>
-              <input name="password" id="password" maxlength="12" autofocus="autofocus" type="password" />
+              <input name="password" id="password" maxlength="12" autocomplete="off" type="password" />
             </div>
-            
+
           </div>
-          <fieldset class="buttons"><input value="Login >" class="button" type="submit" />
+          <fieldset class="buttons"><input value="Login ›" class="button" type="submit" />
         </fieldset>
         </form>
       </div>

@@ -29,11 +29,11 @@ NTULog(json_encode($_SESSION));
             Password
           </div>
           <div class='passwords'>
-            <input name="password1" id="password1" maxlength="4" autofocus="autofocus" type="text" />
+            <input name="password1" id="password1" maxlength="4" autofocus="autofocus" autocomplete="off" type="text" />
             <span>-</span>
-            <input name="password2" id="password2" maxlength="3" type="text" />
+            <input name="password2" id="password2" maxlength="3" autocomplete="off" type="text" />
             <span>-</span>
-            <input name="password3" id="password3" maxlength="3" type="text" />
+            <input name="password3" id="password3" maxlength="3" autocomplete="off" type="text" />
           </div>
         </div>
         </fieldset>
