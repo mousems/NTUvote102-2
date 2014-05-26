@@ -59,14 +59,14 @@ $('.step1-form').submit ->
 
 $('.step2-form').submit ->
   if $('.candidate.selection.selected')[0]
-    if confirm('您決定投給 ' + $('#selection').val() + ' 號 ' + $('.candidate.selection.selected').children('.name').html() + '，確定嗎？ You have decided to vote for no.' + $('#selection').val() + ' - ' + $('.candidate.selection.selected').children('.name').html() + ', is that right?')
+    if confirm('您決定投給 ' + $('#selection').val() + ' 號 ' + $('.candidate.selection.selected').children('.name').html() + '，確定嗎？\n You’ve decided to vote for No. ' + $('#selection').val() + ' - ' + $('.candidate.selection.selected').children('.name').html() + ', is that right?')
       $('input[type="submit"]').prop 'disabled', true
       $(this).addClass 'submitted'
       return true
     else
       return false
   else
-    if confirm('您決定投空白廢票，確定嗎？ You have decided to cast a blank ballot, is that right?')
+    if confirm('您決定投空白廢票，確定嗎？\n You’ve decided to cast a blank ballot, is that right?')
       $('input[type="submit"]').prop 'disabled', true
       $(this).addClass 'submitted'
       return true
@@ -74,7 +74,7 @@ $('.step2-form').submit ->
       return false
 
 $('.step3-form').submit ->
-  if confirm('確定送出？ Are you sure you want to submit?')
+  if confirm('確定送出？\n Are you sure you want to submit?')
     $('input[type="submit"]').prop 'disabled', true
     $(this).addClass 'submitted'
     return true
