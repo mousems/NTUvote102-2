@@ -1,0 +1,21 @@
+!!!
+%html{lang: "zh-tw", class: "han-la"}
+  %head
+    %meta{charset: "utf-8"}
+
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, user-scalable=no"}
+    -# Always force latest IE rendering engine or request Chrome Frame
+    %meta{content: "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+
+    %title NTU Voting
+
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Montserrat:400,700", "all"
+
+    = javascript_include_tag "modernizr"
+
+  %body{class: page_classes}
+    .wrapper
+      .content
+        = yield
+
+    = javascript_include_tag "all"

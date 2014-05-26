@@ -1,0 +1,423 @@
+@import 'compass';
+@import 'susy';
+
+// -------------------------------------
+//   Settings
+// -------------------------------------
+
+$RB-size: 66px;
+$red: #f2dede;
+$green: #dff0d8;
+$blue: #d9edf7;
+
+// -------------------------------------
+//   Susy
+// -------------------------------------
+
+$total-columns: 12;
+$column-width: 4em;
+$gutter-width: 2em;
+$grid-padding: $gutter-width*1.2;
+
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+@mixin button($color) {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	top: 0;
+	padding: 10px 24px;
+	border: 1px solid darken($color, 12%);
+	@include text-shadow(none);
+	@include background(linear-gradient(top, $color, darken($color, 5%)));
+	@include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 7px 0px darken($color, 12%), 0px 8px 3px rgba(0, 0, 0, 0.3));
+	@include transition-property(all);
+	@include transition-duration(.3s);
+	@if lightness($color) < lightness(#999) {
+		color: #fff;
+	} @else {
+		color: #000;
+	}
+
+	&:hover {
+		@include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 7px 0px darken($color, 12%), 0px 8px 3px rgba(0, 0, 0, 0.3), inset 0 0 1000px rgba(255,255,255, .1));
+	}
+
+	&:active {
+		top: 5px;
+		color: darken($color, 12%);
+		@include text-shadow(0 1px 1px rgba(255,255,255, .4));
+		@include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 2px 0px darken($color, 10%), 0px 3px 3px rgba(0, 0, 0, 0.3));
+		@include background(linear-gradient(bottom, $color, darken($color, 5%)));
+	}
+
+	&:disabled {
+		color: darken($color, 12%);
+		@include text-shadow(0 1px 1px rgba(255,255,255, .4));
+		@include background(linear-gradient(bottom, $color, darken($color, 5%)));
+	}
+}
+
+// -------------------------------------
+//   Base64 Image
+// -------------------------------------
+
+$vote_stamp: url(data:image/png;base64,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);
+
+// -------------------------------------
+//   Base
+// -------------------------------------
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	font-size: 120%;
+	padding: 0;
+	margin: 0;
+	min-height: 90%;
+	background-color: #eaeaea;
+
+	* {
+		@include box-sizing(border-box);
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		-o-user-select: none;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		outline: 0;
+	}
+
+	input {
+		-moz-user-select: auto;
+		-khtml-user-select: auto;
+		-webkit-user-select: auto;
+		-o-user-select: auto;
+	}
+}
+
+img {
+	max-width: 100%;
+}
+
+fieldset {
+	border: none;
+}
+
+// -------------------------------------
+//   Layout
+// -------------------------------------
+
+.wrapper {
+	min-height: 100%;
+}
+
+.container {
+	display: flex;
+	display: -webkit-flex;
+	min-height: 100%;
+}
+
+.content {
+	margin: auto;
+	display: block;
+	@include container;
+	// @include susy-grid-background;
+
+	form > hgroup {
+		margin: 32px 0;
+		@include span-columns(6);
+		@include pre(3);
+
+		h1, h2 {
+			margin: 0;
+		}
+
+		h2 {
+			font-size: 14px;
+			color: #555;
+		}
+	}
+
+	fieldset {
+		@include span-columns(12);
+		clear: both;
+		margin-bottom: 24px;
+
+		.input {
+			display: inline-block;
+			position: relative;
+			padding: 16px 18px;
+			@include border-radius(4px);
+			background-color: #888;
+			@include box-shadow(0 1px 2px rgba(255,255,255, .3), 0 1px 2px rgba(0,0,0, .3) inset);
+
+			.label {
+				position: relative;
+				display: block;
+				float: left;
+				line-height: 22px;
+				vertical-align: center;
+				padding: 9px 12px 0 0;
+				@include text-shadow(0 1px 2px rgba(255,255,255, .3));
+			}
+
+			&.error {
+				background-color: #f55;
+				color: #900;
+			}
+		}
+	}
+
+	.passwords {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		background-color: #eee;
+		border: 1px solid #aaa;
+		@include border-radius(4px);
+		@include box-shadow(0 1px 2px rgba(0,0,0, .3) inset, 0 1px 2px rgba(255,255,255, .3));
+
+		input {
+			border: none;
+			border-left: 1px solid #ccc;
+			border-right: 1px solid #ccc;
+			font-size: 22px;
+			padding: 4px 8px;
+
+			@include box-shadow(0 1px 2px rgba(0,0,0, .3) inset, 0 0 10px rgba(0,0,0, .18) inset);
+		}
+
+		input:first-child {
+			border-left: none;
+			@include border-top-left-radius(4px);
+			@include border-bottom-left-radius(4px);
+		}
+
+		input:last-child {
+			border-right: none;
+			@include border-top-right-radius(4px);
+			@include border-bottom-right-radius(4px);
+		}
+	}
+
+	#password1 {
+		width: 4em;
+	}
+
+	#password2 {
+		width: 3em;
+	}
+
+	#password3 {
+		width: 3em;
+	}
+}
+
+.button {
+	@include button(#822);
+
+	hgroup + & {
+		margin: 32px 0;
+		@include span-columns(3 omega);
+	}
+}
+
+.buttons {
+	.button:only-child {
+		@include span-columns(4);
+		@include pre(4);
+		@include post(4);
+	}
+}
+
+.candidate {
+	@include span-columns(4);
+	@include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(128, 128, 128, 0.1) inset);
+	@include transition-property(top, transform, background-color);
+	@include transition-duration(5s, .2s, .2s);
+	@include transition-timing-function(ease-in-out, ease, ease);
+	position: relative;
+	top: 0;
+	padding: 12px;
+	margin-top: 0;
+	margin-bottom: $gutter-width/2;
+	background-color: #fff;
+	&:nth-of-type(3n) { @include omega; }
+
+	@for $i from 1 through 100 {
+		&:nth-of-type(#{$i}) {
+			@include transition-delay(#{$i/12}s, 0, 0);
+		}
+	}
+
+	&.selection::after {
+		content: " ";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	&.selection:active {
+		// top: 4px;
+		@include scale(.98);
+	}
+
+	.id {
+		border-top: 1px solid #555;
+		border-bottom: 1px solid #555;
+	}
+
+	.pic {
+		width: 300px;
+		max-width: 100%;
+		position: relative;
+		display: inline-block;
+
+		&::before {
+			content: " ";
+			display: block;
+			margin-top: 120%;
+		}
+
+		.img {
+			position: absolute;
+			top: 12px;
+			bottom: 12px;
+			left: 12px;
+			right: 12px;
+			background-position: center;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-color: #eee;
+		}
+	}
+
+	.name {
+		margin: 12px 0;
+		@include text-shadow(0 0 10px rgba(255,255,255, .9));
+	}
+
+	.opinions {
+		margin-top: 8px;
+
+		label {
+			display: inline-block;
+			position: relative;
+			width: $RB-size;
+			height: $RB-size;
+			// font-family: 'icons';
+			@include border-radius(33px);
+			// @include background(linear-gradient(top, rgba(0,0,0, 0), rgba(0,0,0, .2)));
+			background-color: #eee;
+			overflow: hidden;
+
+			&:hover {
+				background-color: #cecece;
+			}
+
+			div {
+				position: relative;
+				width: $RB-size - 24;
+				height: $RB-size - 24;
+				margin: 12px;
+				top: -2px;
+				font-size: $RB-size - 36;
+				line-height: $RB-size - 24;
+				@include border-radius(33px);
+				@include box-shadow(0 2px 0 rgba(0,0,0, .3), 0 1px 6px rgba(0,0,0, .6));
+				background-color: #ddd;
+				color: darken(#ddd, 10%);
+				// border: 1px solid darken($green, 20%);
+			}
+
+			.agree {
+				// background-color: $green;
+				// color: darken($green, 30%);
+				// border: 1px solid darken($green, 20%);
+				border: 1px solid darken($green, 40%);
+				@include box-shadow(0 2px 0 darken($green, 60%), 0 1px 6px rgba(0,0,0, .6));
+			}
+
+			.none {
+				// background-color: $blue;
+				// color: darken($blue, 30%);
+				// border: 1px solid darken($blue, 20%);
+				border: 1px solid darken($blue, 40%);
+				@include box-shadow(0 2px 0 darken($blue, 60%), 0 1px 6px rgba(0,0,0, .6));
+			}
+
+			.disagree {
+				// background-color: $red;
+				// color: darken($red, 30%);
+				// border: 1px solid darken($red, 20%);
+				border: 1px solid darken($red, 40%);
+				@include box-shadow(0 2px 0 darken($red, 60%), 0 1px 6px rgba(0,0,0, .6));
+			}
+
+			input:checked {
+				// @include opacity(1);
+
+				+ div {
+					@include box-shadow(0 1px 5px rgba(0,0,0, .6) inset);
+					top: 0;
+				}
+
+				+ .agree {
+					background-color: $green;
+					color: darken($green, 30%);
+					border: 1px solid darken($green, 20%);
+				}
+
+				+ .none {
+					background-color: $blue;
+					color: darken($blue, 30%);
+					border: 1px solid darken($blue, 20%);
+				}
+
+				+ .disagree {
+					background-color: $red;
+					color: darken($red, 30%);
+					border: 1px solid darken($red, 20%);
+				}
+			}
+
+			input {
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: $RB-size;
+				height: $RB-size;
+			}
+		}
+	}
+}
+
+.candidate.selected {
+	@include background-size(50px);
+	background-color: lighten(#ffd600, 32%);
+	background-repeat: no-repeat;
+	background-position: 90% 95%;
+	background-image: $vote_stamp;
+
+	.id {
+		border-top: 1px solid #555;
+		border-bottom: 1px solid #555;
+		color: white;
+		background-color: black;
+	}
+}
+
+.submitted {
+	.candidate {
+		top: -99999px;
+	}
+}
