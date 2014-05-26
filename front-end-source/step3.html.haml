@@ -1,0 +1,23 @@
+= form_tag '', :class => 'step3-form', :method => 'post' do
+  %hgroup
+    %h1 NTU Voting
+    %h2 ✓: 同意，✕: 不同意，-: 沒意見。
+  = submit_tag "Submit", :class => "button"
+  = text_field_tag :selection, :id => :selection, :type => :hidden
+  - 50.times do |i|
+    %section.candidate
+      .id= i+1
+      .opinions
+        %label
+          = radio_button_tag "opinion_to_#{i+1}", :value => 1
+          .agree ✓
+        %label
+          = radio_button_tag "opinion_to_#{i+1}", :value => 0, :checked => :checked
+          .none -
+        %label
+          = radio_button_tag "opinion_to_#{i+1}", :value => -1
+          .disagree ✕
+      .pic
+        .img{:style => "background-image: url(" + lorem.image((Random.rand(200)+200).to_s + 'x' + (Random.rand(200)+200).to_s, :random_color => true) + ")"}
+      %h1.name ◎◎◎
+      .elect
