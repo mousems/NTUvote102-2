@@ -22,7 +22,7 @@
     <div class='wrapper'>
       <div class='content'>
         <form action="login" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
-          <h1>102-2 NTU Voting admin</h1>
+          <h1>102-2 NTU Vote Admin</h1>
         </hgroup>
         <fieldset>
           <div class='input'>
