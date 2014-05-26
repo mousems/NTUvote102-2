@@ -110,12 +110,13 @@
 				header("Location:vote-auth");
 			}else{
 				if (isset($_POST['selection'])) {
-					$selection = $_POST['selection']; // int
+					
 
-					if (!preg_match("/\d/", $selection)) {
+					if (preg_match("^/\d/$", $selection)==0) {
 						NTULog("vote_submit page selection variables not match for integer.");
-						header("Location:vote-auth");
-						
+						$selection = 0;						
+					}else{
+						$selection = $_POST['selection']; // int
 					}
 
 				}else{
