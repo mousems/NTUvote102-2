@@ -112,7 +112,7 @@
 				if (isset($_POST['selection'])) {
 					
 
-					if (preg_match("^/\d/$", $selection)==0) {
+					if (preg_match("/^\d$/", $_POST['selection'])==0) {
 						NTULog("vote_submit page selection variables not match for integer.");
 						$selection = 0;						
 					}else{
