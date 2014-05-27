@@ -66,7 +66,7 @@
 	}
 
 	function NTULog($msg,$ECHO=false){
-	    $_msg = date("Y-m-d H:i:s")." ".get_client_ip()." $msg session:".json_encode($_SESSION)."\n";
+	    $_msg = date("Y-m-d H:i:s")." ".get_client_ip()." ".$_SESSION['username']." $msg session:".json_encode($_SESSION)."\n";
 	    $log_path="/var/log/NTUvote/NTUinfo.log";
 	    @file_put_contents($log_path, $_msg,FILE_APPEND);
 	}
