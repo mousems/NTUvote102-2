@@ -40,11 +40,11 @@ session_destroy();
 
         <fieldset class="buttons">
           <p>授權碼為十位亂數，僅第二位為數字，其餘為大寫英文字母。</p>
-          <p>The auth code is 10 digits , only no.2 digit is number , others is upper case letter.</p>
+          <p>Auth code consists of 9 uppercase letters and 1 digit on the second place.</p>
           <input value="Proceed ›" class="button" type="submit" />
         </fieldset>
-        
-        
+
+
         </form>
       </div>
     </div>

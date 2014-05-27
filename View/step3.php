@@ -30,7 +30,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
           <h1>102-2 NTU Vote</h1>
           <h1><?=$title;?></h1>
           <h2><?=$title_en;?></h2>
-          <h3>✓ 同意/agree、✕ 不同意/disagree、- 沒意見/no comment </h2>
+          <h3>✓ 同意/Approve；✕ 不同意/Reject；- 無意見/Neutral </h2>
         </hgroup>
 
         <input value="Submit" class="button" type="submit" />
