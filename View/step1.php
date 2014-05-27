@@ -41,10 +41,11 @@
         <fieldset class="buttons">
           <p>授權碼為十位亂數，僅第二位為數字，其餘為大寫英文字母。</p>
           <p>Authorization Code is a random number in 10 letters, the number ONLY in 2nd letter and other is a alphabet.</p>
+
           <input value="Proceed ›" class="button" type="submit" />
         </fieldset>
-        
-        
+
+
         </form>
       </div>
     </div>
