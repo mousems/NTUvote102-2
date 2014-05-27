@@ -26,6 +26,7 @@ class Vote_pwd_check {
 		if ($result===1) {
 		}else{
 			$this->errorMsg("密碼格式錯誤！ Invalid password format.");
+			header("Location:/vote-auth");
 			return 0;
 		}
 		$result = file_get_contents("https://".$loggerip."/Controller/LoggerServer.php?action=getTicket&step=".$post_data['step']."&password=".$password);
@@ -37,6 +38,7 @@ class Vote_pwd_check {
 			header("Location:vote?auth=".get_keyindex($post_data['step'].$password));
 		}else{
 			$this->errorMsg("密碼認證失敗！ Login failed.");
+			header("Location:/vote-auth");
 			return 0;
 		}
 	}
