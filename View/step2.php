@@ -31,6 +31,9 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
           <h1>102-2 NTU Vote</h1>
           <h1><?=$title;?></h1>
           <h2><?=$title_en;?></h2>
+          <p>如果您沒有做出選擇，將會變成廢票。</p>
+          <p>If you haven’t choice in the ballot is invalidated.</p>
+
         </hgroup>
         <input value="Submit" class="button" type="submit" />
 
