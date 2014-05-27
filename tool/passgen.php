@@ -9,7 +9,7 @@
 			for($i=0; $i < 8; $i++){
 				$tmp .= chr(mt_rand($ranges[0], $ranges[1]));
 			}
-			return $tmp;
+			return substr($tmp, 0 , 2)."-".substr($tmp, 2,3)."-".substr($tmp, 5,3);
 
 
 	}
