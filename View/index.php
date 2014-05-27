@@ -23,6 +23,7 @@
       <div class='content'>
         <form action="login" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
           <h1>102-2 NTU Vote Admin</h1>
+          <p>系統會定期登出，請通知選務人員協助登入投票所系統。</p>
         </hgroup>
         <fieldset>
           <div class='input'>
