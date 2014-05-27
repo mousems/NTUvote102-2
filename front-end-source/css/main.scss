@@ -255,6 +255,7 @@ fieldset {
 	@include transition-property(top, transform, background-color);
 	@include transition-duration(5s, .2s, .2s);
 	@include transition-timing-function(ease-in-out, ease, ease);
+	cursor:pointer;
 	position: relative;
 	overflow: hidden;
 	top: 0;
