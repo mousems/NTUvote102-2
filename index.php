@@ -45,8 +45,21 @@
 			$_SESSION['step'] = "";
 			$Controller->view("step1");
 			break;
+
+		case 'admin':
+			//page for input password
+			if ($_SESSION['admin']==1) {
+				$Controller->view("admin");
+			}else{
+				header("location:/");
+			}
+			
+			break;
 		case 'success':
 			//page for input password
+
+			file_put_contents("/var/log/NTUvote/stat/".$_SESSION['uid'], date("Y.m.d H:i:s")."\n" , FILE_APPEND);
+
 			$_SESSION['password'] = "";
 			$_SESSION['step'] = "";
 			$Controller->view("step0");

@@ -63,6 +63,7 @@
 					$_SESSION['uid'] = $info['id'];
 					$_SESSION['realname'] = base64_encode($info['realname']);
 					$_SESSION['username'] = $info['username'];
+					$_SESSION['admin'] = $info['admin'];
 					NTULog(json_encode($_SESSION));
 					header("Location:/vote-auth");
 				}else{

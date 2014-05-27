@@ -36,10 +36,34 @@ class Vote_pwd_check {
 		$_SESSION['password'] = $password;
 		if ($result=="1") {
 			header("Location:vote?auth=".get_keyindex($post_data['step'].$password));
+
 		}else{
-			$this->errorMsg("密碼認證失敗！ Login failed.");
-			header("Location:/vote-auth");
-			return 0;
+
+			$step_in_db = file_get_contents("https://".$loggerip."/Controller/LoggerServer.php?action=Get_Ticket_step&step=".$post_data['step']."&password=".$password);
+			NTULog("https://".$loggerip."/Controller/LoggerServer.php?action=Get_Ticket_step&step=".$post_data['step']."&password=".$password);
+			NTULog("step_in_db:$step_in_db");
+			if ($step_in_db!=-1) {
+
+
+				$_SESSION['step'] = (int)($step_in_db)+1;
+				$_SESSION['password'] = $password;
+
+
+
+				header("Location:vote?auth=".get_keyindex($_SESSION['step'].$_SESSION['password']));
+			}else{
+
+				$this->errorMsg("密碼認證失敗！ Login failed.");
+				header("Location:/vote-auth");
+				return 0;
+
+
+			}
+
+
+
+
+
 		}
 	}
 

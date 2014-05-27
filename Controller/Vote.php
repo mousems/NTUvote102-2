@@ -40,6 +40,67 @@ class Vote extends MySQL {
 
 	}
 
+
+
+	// return -1 for error
+	function Get_Ticket_step($password){
+
+		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
+
+		if ($result===1) {
+		}else{
+			NTULog(" Vote-Get_Ticket_step failed '$password' for password format");
+			return -1;
+		}
+
+		$keyindex = get_keyindex($password) ;
+		$d1 = $matches[1];
+		$d2 = $matches[2];
+		$SQL = "SELECT * from `ticket` where `keyindex`='$keyindex'";
+
+		try {
+			$tmp = $this->query_row($SQL);
+		} catch (Exception $e) {
+			NTULog("warning MySQL failed");
+			return -1;
+		}
+
+		if (isset($tmp)) {
+			//password exists
+			$auth_fromuser = sha1($tmp[2].md5($password));
+			if ($auth_fromuser===$tmp[1]) {
+				if ($tmp[3]==0 || $tmp[3]<=date("U") ){
+					//pass auth		
+
+					$final_step = sizeof(Get_votelist($password));
+
+					if ($step>=$final_step) {
+						NTULog(" Vote-Get_Ticket_step failed '$password' step wrong out of range");
+						return -1;
+					}
+
+					return $tmp[4];
+				}else{
+
+					NTULog(" Vote-Get_Ticket_step failed '$password' is already locked");
+					return -1;
+				}		
+
+			}else{
+				NTULog(" Vote-Get_Ticket_step failed '$password' match index but hash failed");
+				return -1;
+
+			}
+		}else{
+			NTULog(" Vote-Get_Ticket_step fail '$password' not found");
+			return -1;
+		}
+
+
+
+	}
+
+
 	/*
 	// return 0:failed ,1:success , -1:locked
 
@@ -64,7 +125,6 @@ class Vote extends MySQL {
 
 
 		$keyindex = get_keyindex($password) ;
-		NTULog("keyindex:".$keyindex);
 		$d1 = $matches[1];
 		$d2 = $matches[2];
 		$SQL = "SELECT * from `ticket` where `keyindex`='$keyindex'";
@@ -137,7 +197,7 @@ class Vote extends MySQL {
 			NTULog(" Vote-Lock_ticket locked successful '$password'");
 			return 1;
 		} catch (Exception $e) {
-			NTULog("warning Lock_ticket failed");
+			NTULog("Vote-Lock_ticket warning Lock_ticket failed");
 			return 0;
 		}
 					//Lock
