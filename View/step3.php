@@ -33,7 +33,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
 
           <p>✓ 同意/Approve；✕ 不同意/Reject；- 無意見/Neutral </p>
           <p>同額競選：每個候選人都可以選贊成或是反對。</p>
-          <p>The same amount constituency: you can choice in pro and con for all candidate. </p>
+          <p>Uncontested election: You may approve or reject individual candidate. </p>
         </hgroup>
 
         <input value="Submit" class="button" type="submit" />
