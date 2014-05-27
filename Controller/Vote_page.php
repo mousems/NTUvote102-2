@@ -42,6 +42,7 @@ class Vote_pwd_check {
 	}
 
 	function errorMsg($string) {
+		header('Content-Type: text/html; charset=utf-8');
         echo '<noscript>'.$string.'</noscript>';
 		echo '<script language="javascript">';
   	    echo 'alert("'.$string.'");';

@@ -5,7 +5,7 @@
 // input auth_key , r_id
 
 if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
-  header("vote-auth");
+  header("Location:vote-auth");
 }
 
 @session_start();
@@ -32,7 +32,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
           <h1><?=$title;?></h1>
           <h2><?=$title_en;?></h2>
           <p>如果您沒有做出選擇，將會變成廢票。</p>
-          <p>If you haven’t choice in the ballot is invalidated.</p>
+          <p>Blank vote would be casted if none of the candidates were selected.</p>
 
         </hgroup>
         <input value="Submit" class="button" type="submit" />
