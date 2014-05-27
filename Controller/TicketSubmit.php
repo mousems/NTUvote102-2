@@ -34,8 +34,8 @@
 				chdir($path);
 				exec('git config user.email "mousems.kuo@gmail.com"');
 				exec('git config user.name "$ServerName"');
-				exec("git add $r_id");  
-				exec("git commit -m'submit ticket by ".$ServerName." automatically , ".$r_id."-".$selection."'");
+				exec(escapeshellcmd("git add $r_id"));  
+				exec(escapeshellcmd("git commit -m'submit ticket by ".$ServerName." automatically , ".$r_id."-".$selection."'"));
 			}else{
 				NTULog("StoreTicket_single r_id not match format:$r_id");
 				return 0;
@@ -49,24 +49,27 @@
 			global $ServerName;
 
 
-			foreach ($resultlist as $result_cid => $result_value) {
-				# code...
+			$check = preg_match("/^[A-Z]\d+$/");
+			if ($check===1) {
 
-				file_put_contents("/var/log/NTUticket/$r_id", date("Y.m.d H:i:s ").$result_cid.":".$result_value."\n" , FILE_APPEND);
-				NTUVoteLog("StoreTicket:".$result_cid.":".$result_value);
+				foreach ($resultlist as $result_cid => $result_value) {
+					# code...
 
-				$path = "/var/log/NTUticket/"; 
-				chdir($path);
-				exec('git config user.email "mousems.kuo@gmail.com"');
-				exec('git config user.name "$ServerName"');
-				exec("git add $r_id");  
-				exec("git commit -m'submit ticket by ".$ServerName." automatically , ".$result_cid.":".$result_value."'");
+					file_put_contents("/var/log/NTUticket/$r_id", date("Y.m.d H:i:s ").$result_cid.":".$result_value."\n" , FILE_APPEND);
+					NTUVoteLog("StoreTicket:".$result_cid.":".$result_value);
 
+					$path = "/var/log/NTUticket/"; 
+					chdir($path);
+					exec('git config user.email "mousems.kuo@gmail.com"');
+					exec('git config user.name "$ServerName"');
+					exec(escapeshellcmd("git add $r_id"));  
+					exec(escapeshellcmd("git commit -m'submit ticket by ".$ServerName." automatically , ".$result_cid.":".$result_value."'"));
 
-
-
+				}
+			}else{
+				NTULog("StoreTicket_single r_id not match format:$r_id");
+				return 0;
 			}
-
 
 
 
