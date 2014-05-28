@@ -25,7 +25,7 @@
 
 			global $ServerName;
 
-			$check = preg_match("/^[A-Z]\d+$/");
+			$check = preg_match("/^[A-Z]\d+$/" , $r_id);
 			if ($check===1) {
 				file_put_contents("/var/log/NTUticket/$r_id", date("Y.m.d H:i:s ").$selection."\n" , FILE_APPEND);
 				NTUVoteLog("StoreTicket:".$r_id.":".$selection);
@@ -49,7 +49,7 @@
 			global $ServerName;
 
 
-			$check = preg_match("/^[A-Z]\d+$/");
+			$check = preg_match("/^[A-Z]\d+$/" , $r_id);
 			if ($check===1) {
 
 				foreach ($resultlist as $result_cid => $result_value) {

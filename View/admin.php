@@ -35,9 +35,12 @@
         <fieldset><div class='input'>
           <div class='passwords'>
             <?php
-              if (file_exists("/var/log/NTUvote/stat/".$_SESSION['uid'])) {
+
+              $vote_username=str_replace("staff", "vote", $_SESSION['username']);
+
+              if (file_exists("/var/log/NTUvote/stat/".$vote_username)) {
                 
-                $content = file_get_contents("/var/log/NTUvote/stat/".$_SESSION['uid']);
+                $content = file_get_contents("/var/log/NTUvote/stat/".$vote_username);
 
                 $content = explode("\n", $content);
                 

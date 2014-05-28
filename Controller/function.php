@@ -53,7 +53,7 @@
 		$ip = array();
 	
 		foreach ($source as $src) {
-			$val = $_SERVER[$src];
+			$val = @$_SERVER[$src];
 			if (filter_var($val, FILTER_VALIDATE_IP) ||
 				filter_var($val, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
 					$ip[] = $val;

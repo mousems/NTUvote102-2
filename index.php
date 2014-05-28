@@ -58,7 +58,12 @@
 		case 'success':
 			//page for input password
 
-			file_put_contents("/var/log/NTUvote/stat/".$_SESSION['uid'], date("Y.m.d H:i:s")."\n" , FILE_APPEND);
+
+			$username = $_SESSION['username'];
+			$username = explode("-", $username);
+
+
+			file_put_contents("/var/log/NTUvote/stat/".$username[0], date("Y.m.d H:i:s")."\n" , FILE_APPEND);
 
 			$_SESSION['password'] = "";
 			$_SESSION['step'] = "";
