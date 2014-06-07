@@ -94,6 +94,7 @@
 				$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
 
 				header("Location:vote?auth=".$authkey);
+				exit;
 
 			}else{
 				NTULog("Ticket_Single_Submit remote response not '1' ");
@@ -136,6 +137,7 @@
 				$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
 
 				header("Location:vote?auth=".$authkey);
+				exit;
 
 			}else{
 				NTULog("Ticket_Single_Submit remote response not '1' ");

@@ -52,6 +52,7 @@
 				$Controller->view("admin");
 			}else{
 				header("location:/");
+				exit;
 			}
 			
 			break;
@@ -81,6 +82,7 @@
 			if (!isset($_SESSION['password'])) {
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
+				exit;
 			}
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
 			
@@ -88,11 +90,13 @@
 			if ($authkey!=$_GET['auth']) {
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
+				exit;
 			}else{
 				//pass csrf
 
 				if (sizeof(Get_votelist($_SESSION['password'])) < $_SESSION['step'] ){
 					header("Location:success");
+					exit;
 				}
 				$vote_r_id = Get_votelist($_SESSION['password']);
 				$vote_r_id = $vote_r_id[$_SESSION['step']];
@@ -121,11 +125,13 @@
 			if (!isset($_SESSION['password'])) {
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
+				exit;
 			}
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
 				NTULog("vote_submit_single page authkey not match for SESSION data.");
 				header("Location:vote-auth");
+				exit;
 			}else{
 				if (isset($_POST['selection'])) {
 					
@@ -155,11 +161,13 @@
 			if (!isset($_SESSION['password'])) {
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
+				exit;
 			}
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
 				NTULog("vote_submit_multi page authkey not match for SESSION data.");
 				header("Location:vote-auth");
+				exit;
 			}else{
 
 					NTULog("Ticket_Multi_Submit _POST:".json_encode($_POST));
@@ -178,6 +186,7 @@
 		case 'logout':
 			session_destroy();
 			header("location:/");
+			exit;
 			break;
 		default:
 			$Controller->view("index");
