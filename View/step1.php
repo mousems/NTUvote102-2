@@ -3,6 +3,7 @@
 // session_destroy();
     if ($_SESSION['uid'] == NULL) {
         header("Location:/");
+		exit;
     }
 ?>
 

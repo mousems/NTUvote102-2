@@ -6,11 +6,13 @@
 
 if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
   header("Location:vote-auth");
+  exit;
 }
 
 @session_start();
     if ($_SESSION['uid'] == NULL) {
         header("Location:/");
+		exit;
     }
 ?>
 

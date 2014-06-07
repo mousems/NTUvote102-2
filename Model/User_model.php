@@ -66,6 +66,7 @@
 					$_SESSION['admin'] = $info['admin'];
 					NTULog(json_encode($_SESSION));
 					header("Location:/vote-auth");
+					exit;
 				}else{
 					NTULog(" login failed : username:$username password not match");
 					$msg = "帳號密碼錯誤";

@@ -27,7 +27,7 @@ class Vote_pwd_check {
 		}else{
 			$this->errorMsg("密碼格式錯誤！ Invalid password format.");
 			header("Location:/vote-auth");
-			return 0;
+			exit;
 		}
 		$result = file_get_contents("https://".$loggerip."/Controller/LoggerServer.php?action=getTicket&step=".$post_data['step']."&password=".$password);
 		NTULog("getTicket:$result");
@@ -36,7 +36,7 @@ class Vote_pwd_check {
 		$_SESSION['password'] = $password;
 		if ($result=="1") {
 			header("Location:vote?auth=".get_keyindex($post_data['step'].$password));
-
+			exit;
 		}else{
 
 			$step_in_db = file_get_contents("https://".$loggerip."/Controller/LoggerServer.php?action=Get_Ticket_step&step=".$post_data['step']."&password=".$password);
@@ -51,11 +51,12 @@ class Vote_pwd_check {
 
 
 				header("Location:vote?auth=".get_keyindex($_SESSION['step'].$_SESSION['password']));
+				exit;
 			}else{
 
 				$this->errorMsg("密碼認證失敗！ Login failed.");
 				header("Location:/vote-auth");
-				return 0;
+				exit;
 
 
 			}

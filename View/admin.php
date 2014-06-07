@@ -3,6 +3,7 @@
 // session_destroy();
     if ($_SESSION['admin'] != "1") {
         header("Location:/");
+		exit;
     }
 ?>
 <!DOCTYPE html>
