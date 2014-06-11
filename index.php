@@ -180,7 +180,9 @@
 			header("location:/");
 			break;
 		default:
-			$Controller->view("index");
+			
+			$user = new User_Model;
+			$user->Login(array("username"=>"vote1" , "password"=>"p69KBCggy"));
 			break;
 	}
 
