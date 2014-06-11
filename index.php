@@ -100,7 +100,7 @@
 
 				$votepage = new VotePage_main;
 
-				if (substr($vote_r_id, 0,1) == "B") {
+				if (substr($vote_r_id, 0,1) == "D") {
 					//multi
 					$votepage->vote_multi($vote_r_id);
 				}else{
@@ -151,6 +151,7 @@
 
 
 		case 'vote_submit_multi':
+			NTULog(json_encode($_POST));
 			//page for vote result form post destination
 			if (!isset($_SESSION['password'])) {
 				NTULog("vote page authkey not match for SESSION data.");

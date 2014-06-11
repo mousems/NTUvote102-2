@@ -106,7 +106,6 @@
 			$votepage_main = new VotePage_main;
 			$candidate_count = sizeof($votepage_main->getCidList($_SESSION['step'],$_SESSION['password']));
 
-
 			if ($candidate_count ==0) {
 				NTUVoteLog("Ticket_Multi_Submit candidate_count=0");
 				$votepage_main->errorMsg("送出錯誤。Error.");
