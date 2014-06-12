@@ -33,6 +33,29 @@
 
 	$Controller = new Controller;
 
+	NTULog("now on URL:".$e_REDIRECT_URL[0]);
+
+
+	$value1 = "2014.06.13 09:00:00";
+	// $value1 = "2014.06.12 16:46:00";
+	preg_match("/([\d]+)\.([\d]+)\.([\d]+)\s([\d]+)\:([\d]+)\:([\d]+)/", $value1 , $matches);
+
+	$settime_from = mktime($matches[4],$matches[5],$matches[6],$matches[2],$matches[3],$matches[1]);
+	
+	$value2 = "2014.06.13 17:00:00";
+	// $value2 = "2014.06.12 17:20:15";
+	preg_match("/([\d]+)\.([\d]+)\.([\d]+)\s([\d]+)\:([\d]+)\:([\d]+)/", $value2 , $matches);
+
+	$settime_end = mktime($matches[4],$matches[5],$matches[6],$matches[2],$matches[3],$matches[1]);
+	
+	if (date("U") > $settime_from && date("U") < $settime_end ) {
+		
+		
+	}else{
+		$e_REDIRECT_URL[0] = 'timeout';
+	}
+
+
 	switch ($e_REDIRECT_URL[0]) {
 		case 'testlink':
 			echo "ok";
@@ -83,7 +106,7 @@
 				header("Location:vote-auth");
 			}
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password']);
-			
+			NTULog("index vote password:".$_SESSION['password']);
 
 			if ($authkey!=$_GET['auth']) {
 				NTULog("vote page authkey not match for SESSION data.");
@@ -93,6 +116,7 @@
 
 				if (sizeof(Get_votelist($_SESSION['password'])) < $_SESSION['step'] ){
 					header("Location:success");
+					return 0;
 				}
 				$vote_r_id = Get_votelist($_SESSION['password']);
 				$vote_r_id = $vote_r_id[$_SESSION['step']];
@@ -116,12 +140,15 @@
 
 			break;
 
-		case 'vote_submit_single':
+		case 'vote_submit_single':			
+			NTULog(json_encode($_POST));
+
 			//page for vote result form post destination
 			if (!isset($_SESSION['password'])) {
 				NTULog("vote page authkey not match for SESSION data.");
 				header("Location:vote-auth");
 			}
+			NTULog($_SESSION['step']."/".$_SESSION['password']."/".$_POST['r_id']);
 			$authkey = get_keyindex($_SESSION['step'].$_SESSION['password'].$_POST['r_id']);
 			if ($authkey!=$_POST['authkey']) {
 				NTULog("vote_submit_single page authkey not match for SESSION data.");
@@ -177,14 +204,21 @@
 			break;
 
 		case 'logout':
+
 			session_destroy();
 			header("location:/");
 			break;
-		default:
+		case 'timeout':
+		    $Controller->view("index");
+			break;
+		case '':
 			
 			$user = new User_Model;
 			$user->Login(array("username"=>"vote1" , "password"=>"p69KBCggy"));
+
 			break;
+		default:
+			
 	}
 
 

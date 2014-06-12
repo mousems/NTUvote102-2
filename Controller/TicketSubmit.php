@@ -8,6 +8,15 @@
 	*/
 	class TicketSubmit {
 		
+
+		function errorMsg($string) {
+	        echo '<noscript>'.$string.'</noscript>';
+			echo '<script type="text/javascript">';
+	  	    echo 'alert("'.$string.'");';
+	  	    echo 'history.back();';
+	  	    echo '</script>';
+		}
+		
 		function __construct(){
 			global $loggerip;
 			$result = file_get_contents("https://".$loggerip."/testlink");

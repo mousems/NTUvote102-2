@@ -426,7 +426,7 @@ class Vote extends MySQL {
 			
 		$checkresult = $this->Check_ticket($step , $password);
 	 	
-	 	if ($checkresult==1) {
+	 	if ($checkresult==-1 || $checkresult==1) {
 
 
 			try {
