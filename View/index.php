@@ -22,12 +22,13 @@
     <div class='wrapper'>
       <div class='content'>
         <form action="login" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
-          <h1>102-2 NTU Vote</h1>
-          <p>若您看到此頁面，代表目前不是有效的選舉日期內。</p>
-          <p>研協代表、社科院會長、管院會長</p><p>補選時間：2014/06/13 9:00~17:00</p>
-          <p>現在時間：<?=date("Y.m.d H:i:s");?></p>
+          <h1>NTU Vote 102-2</h1>
+          <h1>學生代表社科院選區補選</h1>
+          <!--p>若您看到此頁面，代表目前不是有效的選舉日期內。</p>
+          <p>補選時間：2014/09/25 9:00~ 2014/09/28 17:00</p>
+          <p>現在時間：<?=date("Y.m.d H:i:s");?></p-->
         </hgroup>
-        <!--fieldset>
+        <fieldset>
           <div class='input'>
             <div class='label'>
               使用者 / Username
@@ -46,7 +47,7 @@
 
           </div>
           <fieldset class="buttons"><input value="Login ›" class="button" type="submit" />
-        </fieldset-->
+        </fieldset>
         </form>
       </div>
     </div>

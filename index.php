@@ -36,13 +36,13 @@
 	NTULog("now on URL:".$e_REDIRECT_URL[0]);
 
 
-	$value1 = "2014.06.13 09:00:00";
+	$value1 = "2014.09.25 09:00:00";
 	// $value1 = "2014.06.12 16:46:00";
 	preg_match("/([\d]+)\.([\d]+)\.([\d]+)\s([\d]+)\:([\d]+)\:([\d]+)/", $value1 , $matches);
 
 	$settime_from = mktime($matches[4],$matches[5],$matches[6],$matches[2],$matches[3],$matches[1]);
 	
-	$value2 = "2014.06.13 17:00:00";
+	$value2 = "2014.09.28 17:00:00";
 	// $value2 = "2014.06.12 17:20:15";
 	preg_match("/([\d]+)\.([\d]+)\.([\d]+)\s([\d]+)\:([\d]+)\:([\d]+)/", $value2 , $matches);
 

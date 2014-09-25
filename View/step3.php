@@ -27,7 +27,8 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
     <div class='wrapper'>
       <div class='content'>
         <form action="vote_submit_multi" accept-charset="UTF-8" class="step3-form" method="post"><hgroup>
-          <h1>102-2 NTU Vote</h1>
+          <h1>NTU Vote 102-2</h1>
+          <h1>學生代表社科院選區補選</h1>
           <h1><?=$title;?></h1>
           <h2><?=$title_en;?></h2>
 

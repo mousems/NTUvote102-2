@@ -22,7 +22,8 @@
         <form action="password_check" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
 
           <input name="step" id="step" type="hidden" value="1" />
-          <h1>102-2 NTU Vote</h1>
+          <h1>NTU Vote 102-2</h1>
+          <h1>學生代表社科院選區補選</h1>
         </hgroup>
         <fieldset><div class='input'>
           <div class='label'>
