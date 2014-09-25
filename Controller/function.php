@@ -27,6 +27,7 @@
 		$list1['I']=array(1=>'A1' ,2=>'B9');
 		$list1['J']=array(1=>'A1' ,2=>'B10' ,3=>'D5');
 		$list1['K']=array(1=>'A1');
+		$list1['L']=array(1=>'F1');
 
 		// if ($matches[2]>=5) {
 		// 	array_push($list1[$matches[1]] , 'C1');

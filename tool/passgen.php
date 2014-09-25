@@ -14,7 +14,7 @@
 
 	}
 
-	$d1list = array("C");
+	$d1list = array("L");
 	$d2list = array(array(0,9) );
 
 
@@ -24,7 +24,7 @@
 		foreach ($d2list as $d2list_key => $d2list_value) {
 			# code...
 
-			for ($i=0; $i < 3; $i++) { 
+			for ($i=0; $i < 3000; $i++) { 
 				$result = GenPassword();
 				$d1 = $d1list_value;
 				$d2 = rand($d2list_value[0],$d2list_value[1]);
