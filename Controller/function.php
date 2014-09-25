@@ -16,7 +16,7 @@
 		$result=preg_match("/^([A-Z])(\d)[A-Z]{8}$/", $password , $matches);
 
 
-		$list1['A']=array(1=>'C2');
+		$list1['A']=array(1=>'C1'); // againvote use this
 		$list1['B']=array(1=>'D1');
 		$list1['C']=array(1=>'D4');
 		$list1['D']=array(1=>'A1' ,2=>'B4');
