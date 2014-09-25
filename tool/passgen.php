@@ -14,8 +14,8 @@
 
 	}
 
-	$d1list = array("A","B","C","D","E","F","G","H","I","J","K");
-	$d2list = array(array(0,4)  , array(5,9));
+	$d1list = array("A");
+	$d2list = array(array(0,9));
 
 
 	foreach ($d1list as $d1list_key => $d1list_value) {

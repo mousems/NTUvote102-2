@@ -413,7 +413,7 @@ class Vote extends MySQL {
 		$votelist = Get_votelist($password);
 
 		preg_match("/([A-Z])(\d)+/" , $votelist[$step] , $checkmulti);
-		if ($checkmulti[1]=="D") {
+		if ($checkmulti[1]=="C") { // for C1-1 multi
 			
 		}else{
 			NTULog(json_encode($checkmulti));

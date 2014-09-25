@@ -124,7 +124,7 @@
 
 				$votepage = new VotePage_main;
 
-				if (substr($vote_r_id, 0,1) == "D") {
+				if (substr($vote_r_id, 0,1) == "C") {
 					//multi
 					$votepage->vote_multi($vote_r_id);
 				}else{
