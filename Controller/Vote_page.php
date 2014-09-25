@@ -91,7 +91,7 @@ class VotePage_main {
 	function __construct(){
 		global $candidate_data , $region_data;
 		$candidate_data = new stdClass;
-		$json='{"C1-1":{"rname":"\u5b78\u751f\u4ee3\u8868","rid":"C1","no":"1","dept":"\u570b\u767c\u78a9\u4e8c","name":"\u5f90\u4f51\u6607"}}';
+		$json='{"C1-1":{"rname":"\u5b78\u751f\u4ee3\u8868","rid":"C1","no":"1","dept":"\u570b\u767c\u78a9\u4e09","name":"\u5f90\u4f51\u6607"}}';
 		$candidate_data = json_decode($json);
 
 
