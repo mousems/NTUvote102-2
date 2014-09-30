@@ -22,12 +22,18 @@
         <form action="password_check" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
 
           <input name="step" id="step" type="hidden" value="1" />
-          <h1>NTU Vote 102-2</h1>
-          <h1>學生代表社科院選區補選</h1>
+          
+          <p>國立臺灣大學102學年度第2學期選舉<br />
+          ——學生代表大會學生代表<br />
+          社會科學院選區重新投票</p>
+
+          <p>The Re-voting of Student Representatives <br />
+          from the College of Social Science <br />
+          in the National Taiwan University Student Council  </p>
         </hgroup>
         <fieldset><div class='input'>
           <div class='label'>
-            授權碼 / Auth Code
+            授權碼 / Auth. Code
           </div>
           <div class='passwords'>
             <input name="password1" id="password1" maxlength="4" autofocus="autofocus" autocomplete="off" type="text" />
@@ -43,7 +49,7 @@
           <p>授權碼為十位亂數，僅第二位為數字，其餘為大寫英文字母。</p>
           <p>Auth code consists of 9 uppercase letters and ONLY 1 digit on the second place.</p>
 
-          <input value="Proceed ›" class="button" type="submit" />
+          <input value="送出授權碼/Proceed ›" class="button" type="submit" />
         </fieldset>
 
 

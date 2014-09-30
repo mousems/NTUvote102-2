@@ -27,17 +27,19 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
     <div class='wrapper'>
       <div class='content'>
         <form action="vote_submit_multi" accept-charset="UTF-8" class="step3-form" method="post"><hgroup>
-          <h1>NTU Vote 102-2</h1>
-          <h1>學生代表社科院選區補選</h1>
-          <h1><?=$title;?></h1>
-          <h2><?=$title_en;?></h2>
+          
+          <p>國立臺灣大學102學年度第2學期選舉<br />
+          ——學生代表大會學生代表<br />
+          社會科學院選區重新投票</p>
 
-          <p>✓ 同意/Approve；✕ 不同意/Reject；- 無意見/Neutral </p>
-          <p>同額競選：每個候選人都可以選贊成或是反對。</p>
-          <p>Uncontested election: You may approve or reject individual candidate. </p>
+          <p>The Re-voting of Student Representatives <br />
+          from the College of Social Science <br />
+          in the National Taiwan University Student Council  </p>
+
+          <p>✓ 同意/Approve；- 無效票 invalid ; ✕ 不同意/Reject </p>
         </hgroup>
 
-        <input value="Submit" class="button" type="submit" />
+        <input value="送出選票/Submit" class="button" type="submit" />
 
         <input name="authkey" id="authkey" type="hidden" value="<?=$authkey;?>"/>
 

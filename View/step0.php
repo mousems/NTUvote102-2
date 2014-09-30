@@ -24,7 +24,14 @@
         <form action="vote-auth" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
 
           <input name="step" id="step" type="hidden" value="1" />
-          <h1>102-2 NTU Vote</h1>
+          
+          <p>國立臺灣大學102學年度第2學期選舉<br />
+          ——學生代表大會學生代表<br />
+          社會科學院選區重新投票</p>
+
+          <p>The Re-voting of Student Representatives <br />
+          from the College of Social Science <br />
+          in the National Taiwan University Student Council  </p>
         </hgroup>
         <fieldset><div class='input'>
           <div class='passwords'>

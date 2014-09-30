@@ -22,8 +22,14 @@
     <div class='wrapper'>
       <div class='content'>
         <form action="login" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
-          <h1>NTU Vote 102-2</h1>
-          <h1>學生代表社科院選區補選</h1>
+          
+          <p>國立臺灣大學102學年度第2學期選舉<br />
+          ——學生代表大會學生代表<br />
+          社會科學院選區重新投票</p>
+
+          <p>The Re-voting of Student Representatives <br />
+          from the College of Social Science <br />
+          in the National Taiwan University Student Council  </p>
           <!--p>若您看到此頁面，代表目前不是有效的選舉日期內。</p>
           <p>補選時間：2014/09/25 9:00~ 2014/09/28 17:00</p>
           <p>現在時間：<?=date("Y.m.d H:i:s");?></p-->
