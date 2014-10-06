@@ -45,7 +45,7 @@ mv host-config-sample.php host-config.php and edit it.
 ready to vote!
 
 #### contact
-MouseMs <mousems.kuo [at] gmail.com>
+MouseMs < mousems.kuo [at] gmail.com >
 
 ## Building front-end assets
 
