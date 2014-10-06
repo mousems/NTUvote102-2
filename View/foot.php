@@ -14,4 +14,4 @@ if (isset($_SESSION['realname'])) {
 }
 ?>
 
-<p><?=$footinfo;?> NTUvote102-2 | <a href="https://github.com/mousems/NTUvote102-2">Github</a></p>
+<p><?=$footinfo;?> NTUvote102-2 | 國立臺灣大學學生會選舉罷免執行委員會</p>

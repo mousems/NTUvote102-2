@@ -26,7 +26,8 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
   <body class='step3'>
     <div class='wrapper'>
       <div class='content'>
-        <form action="vote_submit_multi" accept-charset="UTF-8" class="step3-form" method="post"><hgroup>
+        <form action="vote_submit_multi" accept-charset="UTF-8" class="step3-form" method="post">
+          <hgroup>
           
           <p>國立臺灣大學102學年度第2學期選舉<br />
           ——學生代表大會學生代表<br />
@@ -45,13 +46,13 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
 
         <input name="r_id" id="r_id" type="hidden" value="<?=$r_id;?>"/>
 
-
+        <hgroup>
 <?php
 
         foreach ($c_id_arr as $c_id_key => $c_id_value) {
 
 ?>
-
+        
 
         <section class='candidate'>
           <div class='id'><?=$c_id_key;?></div>
@@ -70,7 +71,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
             </label>
           </div>
           <div class='pic'>
-            <div class='img' style='background-image: url(/images/cimg/<?=$c_id_value;?>.jpg)'></div>
+            <div class='img' style='background-image: url(/images/cimg/<?=$c_id_value;?>.jpg)' width='100'></div>
           </div>
           <h1 class='name'><?=$c_name_arr[$c_id_key];?></h1>
           <div class='elect'></div>
@@ -79,7 +80,7 @@ if (!isset($c_id_arr) || !isset($c_name_arr) || !isset($title)) {
 <?php
         }
 ?>
-
+        </hgroup>
 
         </form>
       </div>
