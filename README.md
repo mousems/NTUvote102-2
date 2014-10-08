@@ -28,6 +28,10 @@ mkdir /var/log/NTUticket
 
 mkdir /var/log/NTUvote
 
+apt-get install git
+cd /var/log/NTUticket
+git init
+
 ##### Server 2:
 
 mkdir /var/log/NTUvote
