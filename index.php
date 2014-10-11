@@ -42,7 +42,7 @@
 
 	$settime_from = mktime($matches[4],$matches[5],$matches[6],$matches[2],$matches[3],$matches[1]);
 	
-	$value2 = "2014.10.15 17:00:00";
+	$value2 = "2014.10.15 17:30:00";
 	// $value2 = "2014.06.12 17:20:15";
 	preg_match("/([\d]+)\.([\d]+)\.([\d]+)\s([\d]+)\:([\d]+)\:([\d]+)/", $value2 , $matches);
 
