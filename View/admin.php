@@ -30,7 +30,7 @@
       <div class='content'>
         <form action="" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
           <h1>102-2 NTU Vote</h1>
-          <p><?=json_decode($_SESSION['realname']);?></p>
+          <p><?=base64_decode($_SESSION['realname']);?></p>
         </hgroup>
         <fieldset><div class='input'>
           <div class='passwords'>
