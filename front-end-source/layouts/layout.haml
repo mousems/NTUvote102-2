@@ -14,8 +14,6 @@
     = javascript_include_tag "modernizr"
 
   %body{class: page_classes}
-    .wrapper
-      .content
-        = yield
+    = yield
 
     = javascript_include_tag "all"

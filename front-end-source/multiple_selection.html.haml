@@ -1,0 +1,21 @@
+= form_tag '', :class => 'multiple-selection-form', :method => 'post' do
+  .header
+    %hgroup.title
+      %h1 NTU Voting
+      %h2 ○: 同意，✕: 不同意，-: 沒意見。
+    .actions.two-actions
+      = submit_tag "Skip", :class => "action skip button"
+      = submit_tag "Submit", :class => "action button"
+  #main.main
+    .votes
+      - 20.times do |i|
+        .vote
+          .candidate
+            .id= i+1
+            .choices
+              = radio_button_tag "opinion_to_#{i+1}", :class => 'agree', :value => 1
+              = radio_button_tag "opinion_to_#{i+1}", :class => 'none', :value => 0, :checked => :checked
+              = radio_button_tag "opinion_to_#{i+1}", :class => 'disagree', :value => -1
+            .pic
+              .img{:style => "background-image: url(#{lorem.image((Random.rand(200)+200).to_s + 'x' + (Random.rand(200)+200).to_s, :random_color => true)})"}
+            .name ◎◎◎

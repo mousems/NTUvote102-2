@@ -1,0 +1,19 @@
+= form_tag '', :class => 'single-selection-form', :method => 'post' do
+  .header
+    %hgroup.title
+      %h1 NTU Voting
+      %h2 點選你想要投給誰
+    .actions.two-actions
+      = submit_tag "Skip", :class => "action skip button"
+      = submit_tag "Submit", :class => "action button"
+    = text_field_tag :selection, :id => :selection, :type => :hidden
+  .main
+    .votes
+      .vote
+        - 50.times do |i|
+          .candidate.selection
+            .id= i+1
+            .elect
+            .pic
+              .img{:style => "background-image: url(#{lorem.image((Random.rand(200)+200).to_s + 'x' + (Random.rand(200)+200).to_s, :random_color => true)})"}
+            .name ◎◎◎
