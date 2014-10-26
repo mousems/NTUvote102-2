@@ -1,20 +1,43 @@
+// *************************************
+//
+//   Header
+//   -> 頭
+//
+// *************************************
+
 .header {
+	display: table;
+    width: 100%;
+
+	> * {
+		padding: 24px 36px;
+		display: table-cell;
+		height: 100%;
+	    vertical-align: middle;
+	}
 
 	.title {
-		@include span-columns(8);
+		text-align: left;
+		width: 100%;
+		text-overflow: ellipsis;
 
 		h1, h2 {
 			margin: 0;
+			text-overflow: ellipsis;
+			color: foreground-color($base-backgroundColor);
 		}
 
 		h2 {
 			font-size: 14px;
-			color: #555;
+			@include opacity(.9);
 		}
 	}
 
 	.actions {
-		@include span-columns(4);
+		white-space: nowrap;
 
+		> * {
+			margin: 8px 4px;
+		}
 	}
 }

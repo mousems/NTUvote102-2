@@ -1,23 +1,35 @@
+// *************************************
+//
+//   Main
+//   -> NTU Voting
+//
+// *************************************
+
 @import 'compass';
-@import 'susy';
+// @import 'susy';
 
 // -------------------------------------
 //   Settings
 // -------------------------------------
 
 $RB-size: 66px;
-$red: hsl(360, 61%, 60%);
-$green: hsl(115, 57%, 60%);
-$blue: hsl(200, 65%, 91%);
+$base-dark-color: #111;
+$base-light-color: #fff;
+$red: #ff2d55;
+$green: #4cd964;
+$blue: #34aadc;
+$yello: #ffdb4c;
+$base-backgroundColor: #44515f;
+$candidate-border-color: #888;
 
 // -------------------------------------
 //   Susy
 // -------------------------------------
 
-$total-columns: 12;
-$column-width: 4em;
-$gutter-width: 2em;
-$grid-padding: $gutter-width*1.2;
+// $total-columns: 12;
+// $column-width: 4em;
+// $gutter-width: 2em;
+// $grid-padding: $gutter-width*1.2;
 
 // -------------------------------------
 //   Fonts
@@ -32,10 +44,22 @@ $grid-padding: $gutter-width*1.2;
 @import "core/images";
 
 // -------------------------------------
-//   Elements
+//   Animations
 // -------------------------------------
 
-@import "elements/button";
+@import "core/animations";
+
+// -------------------------------------
+//   Helpers
+// -------------------------------------
+
+@import "core/helpers";
+
+// -------------------------------------
+//   Mixins
+// -------------------------------------
+
+@import "mixins/button";
 
 // -------------------------------------
 //   Base

@@ -1,3 +1,11 @@
+$v = $('.main > *')
+
+if $v.width()*$v.length < $(window).width()
+  $('.main').addClass('mini')
+else
+  $('.main').prepend('<span class="main-before"></span>')
+  $('.main').append('<span class="main-after"></span>')
+
 setTimeout ->
   $('.input').removeClass 'shake'
 , 1000

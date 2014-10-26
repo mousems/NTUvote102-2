@@ -1,0 +1,30 @@
+// *************************************
+//
+//   Vote
+//   -> 選票
+//
+// *************************************
+
+.vote {
+	@include box-shadow(0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(128, 128, 128, 0.12) inset, 0 4px 12px rgba(0, 0, 0, 0.32));
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	padding: 16px;
+	margin: 24px 8px;
+	background-color: #fff;
+	white-space: nowrap;
+
+	&:only-child, &:first-of-type { margin-left: 18px; }
+	&:only-child, &:last-of-type { margin-right: 18px; }
+
+	@for $i from 1 through 100 {
+		&:nth-of-type(#{$i}) {
+			@include transition-delay(#{$i/12}s, 0, 0);
+		}
+	}
+
+	> * {
+		display: inline-block;
+	}
+}
