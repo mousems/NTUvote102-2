@@ -1,0 +1,259 @@
+.wrapper {
+	min-height: 100%;
+}
+
+.container {
+	display: flex;
+	display: -webkit-flex;
+	min-height: 100%;
+}
+
+.content {
+	margin: auto;
+	display: block;
+	@include container;
+	// @include susy-grid-background;
+}
+
+.button {
+	@include button(#822);
+
+	hgroup + & {
+		margin: 32px 0;
+		@include span-columns(3 omega);
+	}
+}
+
+.buttons {
+	.button:only-child {
+		@include span-columns(4);
+		@include pre(4);
+		@include post(4);
+	}
+}
+
+.candidate {
+	@include span-columns(4);
+	@include box-shadow(0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(128, 128, 128, 0.1) inset);
+	@include transition-property(top, transform, background-color);
+	@include transition-duration(5s, .2s, .2s);
+	@include transition-timing-function(ease-in-out, ease, ease);
+	cursor:pointer;
+	position: relative;
+	overflow: hidden;
+	top: 0;
+	padding: 12px;
+	margin-top: 0;
+	margin-bottom: $gutter-width/2;
+	background-color: #fff;
+	&:nth-of-type(3n) { @include omega; }
+
+	@for $i from 1 through 100 {
+		&:nth-of-type(#{$i}) {
+			@include transition-delay(#{$i/12}s, 0, 0);
+		}
+	}
+
+	&.selection::after {
+		content: " ";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	&.selection:active {
+		// top: 4px;
+		@include scale(.98);
+	}
+
+	.id {
+		border-top: 1px solid #555;
+		border-bottom: 1px solid #555;
+	}
+
+	.pic {
+		width: 300px;
+		max-width: 100%;
+		position: relative;
+		display: inline-block;
+
+		&::before {
+			content: " ";
+			display: block;
+			margin-top: 120%;
+		}
+
+		.img {
+			position: absolute;
+			top: 12px;
+			bottom: 12px;
+			left: 12px;
+			right: 12px;
+			background-position: center;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-color: #eee;
+			border: 1px solid #aaa;
+		}
+	}
+
+	.name {
+		margin: 12px 0;
+		@include text-shadow(0 0 10px rgba(255,255,255, .9));
+	}
+
+	.opinions {
+		margin-top: 8px;
+		margin-bottom: 18px;
+		height: $RB-size;
+
+		label {
+			display: inline-block;
+			@include box-sizing(content-box);
+			position: relative;
+			width: $RB-size;
+			height: $RB-size;
+			// font-family: 'icons';
+			@include border-radius(33px);
+			// @include background(linear-gradient(top, rgba(0,0,0, 0), rgba(0,0,0, .2)));
+			// background-color: #eee;
+			// overflow: hidden;
+			border: 2px solid #ccc;
+
+			&:hover {
+				border: 2px solid #888;
+			}
+
+			$opinions-inner-margin: 2px;
+			div {
+				position: relative;
+				width: $RB-size - $opinions-inner-margin*2;
+				height: $RB-size - $opinions-inner-margin*2;
+				margin: $opinions-inner-margin;
+				// top: $opinions-inner-margin;
+				// left: $opinions-inner-margin;
+				font-size: $RB-size - 36;
+				line-height: $RB-size - $opinions-inner-margin*2;
+				@include border-radius(33px);
+				// @include box-shadow(0 2px 0 rgba(0,0,0, .3), 0 1px 6px rgba(0,0,0, .6));
+				background-color: #dedede;
+				color: #555;
+				// border: 1px solid darken($green, 20%);
+				@include transition-property(width, height, line-height, margin, background-color, color);
+				@include transition-duration(.3s, .3s, .3s, .3s, .5s, .5s);
+			}
+
+			.agree {
+				// background-color: $green;
+				// color: darken($green, 30%);
+				// border: 1px solid darken($green, 20%);
+				// border: 1px solid darken($green, 40%);
+				// @include box-shadow(0 2px 0 darken($green, 60%), 0 1px 6px rgba(0,0,0, .6));
+			}
+
+			.none {
+				// background-color: $blue;
+				// color: darken($blue, 30%);
+				// border: 1px solid darken($blue, 20%);
+				// border: 1px solid darken($blue, 40%);
+				// @include box-shadow(0 2px 0 darken($blue, 60%), 0 1px 6px rgba(0,0,0, .6));
+			}
+
+			.disagree {
+				// background-color: $red;
+				// color: darken($red, 30%);
+				// border: 1px solid darken($red, 20%);
+				// border: 1px solid darken($red, 40%);
+				// @include box-shadow(0 2px 0 darken($red, 60%), 0 1px 6px rgba(0,0,0, .6));
+			}
+
+			input {
+
+				+ div::before {
+					content: " ";
+					display: block;
+					position: absolute;
+					top: -5555px;
+					left: -5555px;
+					width: 9999px;
+					height: 9999px;
+					pointer-events: none;
+					background-color: rgba(#fff, 0);
+					@include transition-property(background-color);
+					@include transition-duration(1.8s);
+					@include transition-delay(.5s);
+				}
+			}
+
+			input:checked {
+				// @include opacity(1);
+
+				+ div {
+					$opinions-inner-margin: 4px;
+					width: $RB-size - $opinions-inner-margin*2;
+					height: $RB-size - $opinions-inner-margin*2;
+					margin: $opinions-inner-margin;
+					line-height: $RB-size - $opinions-inner-margin*2;
+				}
+
+				+ .agree {
+					color: $green;
+					background-color: darken($green, 30%);
+					// border: 1px solid darken($green, 20%);
+
+					&::before {
+						background-color: rgba($green, .18);
+					}
+				}
+
+				+ .none {
+					color: $blue;
+					background-color: darken($blue, 30%);
+					// border: 1px solid darken($blue, 20%);
+				}
+
+				+ .disagree {
+					color: $red;
+					background-color: darken($red, 30%);
+					// border: 1px solid darken($red, 20%);
+
+					&::before {
+						background-color: rgba($red, .18);
+					}
+				}
+			}
+
+			input {
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: $RB-size;
+				height: $RB-size;
+			}
+		}
+	}
+}
+
+.candidate.selected {
+	@include background-size(50px);
+	background-color: lighten(#ffd600, 32%);
+	background-repeat: no-repeat;
+	background-position: 90% 95%;
+	background-image: $vote_stamp;
+
+	.id {
+		border-top: 1px solid #555;
+		border-bottom: 1px solid #555;
+		color: white;
+		background-color: black;
+	}
+}
+
+.submitted {
+	.candidate {
+		top: -99999px;
+	}
+}
