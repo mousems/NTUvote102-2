@@ -1,0 +1,129 @@
+// *************************************
+//
+//   Candidate
+//   -> 候選人欄
+//
+// *************************************
+
+.candidate {
+	position: relative;
+	width: 300px;
+	overflow: hidden;
+	text-align: center;
+
+	$id-height: 36px;
+	$act-height: 64px;
+	$name-height: 68px;
+
+	margin-left: 4px;
+	margin-right: 4px;
+
+	&:first-child {
+		margin-left: 2px;
+	}
+
+	&:last-child {
+		margin-right: 2px;
+	}
+
+	> * {
+		margin-left: auto;
+		margin-right: auto;
+		border: 1px solid $candidate-border-color;
+		border-bottom: none;
+	}
+
+	> *:last-child {
+		border: 1px solid $candidate-border-color;
+	}
+
+	> *, > * > * {
+		position: relative;
+		z-index: 10;
+	}
+
+	.id {
+		height: $id-height;
+		line-height: $id-height;
+	}
+
+	.elect {
+		height: $act-height;
+		cursor: pointer;
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+	}
+
+	.pic {
+		width: 100%;
+		position: relative;
+		display: inline-block;
+
+		&::before {
+			content: " ";
+			display: block;
+			height: 120%;
+			height: calc(80vh - #{$id-height} - #{$act-height} - #{$name-height} - 100px);
+			max-height: 400px;
+		}
+
+		.img {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-position: center;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-color: rgba(#eee, .5);
+			// border: 1px solid #aaa;
+		}
+	}
+
+	.name {
+		height: $name-height;
+		@include text-shadow(0 0 10px rgba(255,255,255, .9));
+		font-size: 1.7em;
+		line-height: $name-height;
+		font-weight: 800;
+		margin-top: -5px;
+	}
+
+	.choices {
+		position: relative;
+		height: $act-height;
+		width: 100%;
+		text-align: center;
+
+		input {
+			display: inline-block;
+			top: 0;
+			left: 0;
+			height: $act-height;
+			width: 20%;
+			cursor: pointer;
+		}
+	}
+}
+
+.candidate.selected {
+
+	.elect {
+
+		&::after {
+			background-image: $vote_stamp;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+	}
+}
