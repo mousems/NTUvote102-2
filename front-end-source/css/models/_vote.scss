@@ -20,8 +20,25 @@
 
 	@for $i from 1 through 100 {
 		&:nth-of-type(#{$i}) {
-			@include transition-delay(#{$i/12}s, 0, 0);
+			@include transition-delay(#{$i/10}s);
 		}
+	}
+
+	@include transition-property(all);
+	@include transition-duration(1s);
+
+	@include opacity(0);
+	@include translateY(20px);
+
+	body.ready & {
+		@include opacity(1);
+		@include translateY(0);
+	}
+
+	body.sending & {
+		@include opacity(0);
+		@include translateY(-60px);
+		@include transition-duration(1.5s);
 	}
 
 	> * {

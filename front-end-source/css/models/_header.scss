@@ -21,6 +21,13 @@
 		width: 100%;
 		text-overflow: ellipsis;
 
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		animation-fill-mode: both;
+		-webkit-animation-fill-mode: both;
+		animation-name: fadeIn;
+		-webkit-animation-name: fadeIn;
+
 		h1, h2 {
 			margin: 0;
 			text-overflow: ellipsis;
@@ -36,8 +43,21 @@
 	.actions {
 		white-space: nowrap;
 
+		animation-delay: 1.5s;
+		-webkit-animation-delay: 1.5s;
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		animation-fill-mode: both;
+		-webkit-animation-fill-mode: both;
+		animation-name: fadeInDown;
+		-webkit-animation-name: fadeInDown;
+
 		> * {
 			margin: 8px 4px;
+		}
+
+		body.sending & {
+			display: none;
 		}
 	}
 }

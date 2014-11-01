@@ -90,3 +90,7 @@ $('.step3-form').submit ->
     return true
   else
     return false
+
+setTimeout ->
+  $('body').addClass('ready')
+, 300

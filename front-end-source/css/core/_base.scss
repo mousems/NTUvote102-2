@@ -34,6 +34,21 @@ body {
 		-webkit-user-select: auto;
 		-o-user-select: auto;
 	}
+
+	& {
+		background-image: $loading_gif;
+		background-size: initial;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	&.ready {
+		background-image: none;
+	}
+
+	&.sending {
+		background-image: $loading_gif;
+	}
 }
 
 img {
