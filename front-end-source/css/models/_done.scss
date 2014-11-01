@@ -1,0 +1,40 @@
+// *************************************
+//
+//   Done
+//   -> 好
+//
+// *************************************
+
+body .done {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: table;
+	vertical-align: middle;
+	text-align: center;
+	@include opacity(0);
+	@include transition-property(all);
+	@include transition-duration(.3s);
+
+	> * {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	h1, h2 {
+		margin: 0;
+		text-overflow: ellipsis;
+		color: foreground-color($base-backgroundColor);
+	}
+
+	h2 {
+		font-size: 14px;
+		@include opacity(.9);
+	}
+}
+
+body.ready .done {
+	@include opacity(1);
+}
