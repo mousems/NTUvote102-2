@@ -59,5 +59,9 @@
 		body.sending & {
 			display: none;
 		}
+
+		.button {
+			@include button(#822);
+		}
 	}
 }

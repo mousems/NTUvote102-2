@@ -92,15 +92,6 @@
 	}
 }
 
-.button {
-	@include button(#822);
-
-	hgroup + & {
-		margin: 32px 0;
-		// @include span-columns(3 omega);
-	}
-}
-
 .submitted {
 	.candidate {
 		top: -99999px;

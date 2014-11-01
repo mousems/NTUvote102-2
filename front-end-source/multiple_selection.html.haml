@@ -1,10 +1,11 @@
 = form_tag '', :class => 'multiple-selection-form', :method => 'post' do
+  = text_field_tag :skipped, :value => false, :class => 'skipped', :style => 'display: none;'
   .header
     %hgroup.title
       %h1 NTU Voting
       %h2 ○: 同意，✕: 不同意，-: 沒意見。
     .actions.two-actions
-      = submit_tag "Skip", :class => "action skip button"
+      %button.button.skip Skip
       = submit_tag "Submit", :class => "action button"
   #main.main
     .votes
