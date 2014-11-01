@@ -3,3 +3,13 @@
 @function foreground-color($color) {
 	@return contrast-color($color, $base-dark-color, $base-light-color, 60%);
 }
+
+// ----- user-select: none; ----- //
+
+@mixin not-selectable() {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}

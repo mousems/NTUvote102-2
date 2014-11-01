@@ -5,9 +5,11 @@
 	top: 0;
 	padding: 10px 24px;
 	border: 1px solid darken($color, 12%);
+	@include border-radius(2px);
 	@include text-shadow(none);
 	@include background(linear-gradient(top, $color, darken($color, 5%)));
-	@include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 7px 0px darken($color, 12%), 0px 8px 3px rgba(0, 0, 0, 0.3));
+	// @include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 2px 0px darken($color, 12%), 0px 3px 3px rgba(0, 0, 0, 0.12));
+	@include box-shadow(0px 2px 0px darken($color, 16%), 0px 3px 3px rgba(0, 0, 0, 0.12));
 	@include transition-property(all);
 	@include transition-duration(.3s);
 	@if lightness($color) < lightness(#999) {
@@ -17,15 +19,17 @@
 	}
 
 	&:hover {
-		@include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 7px 0px darken($color, 12%), 0px 8px 3px rgba(0, 0, 0, 0.3), inset 0 0 1000px rgba(255,255,255, .1));
+		// @include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 2px 0px darken($color, 12%), 0px 3px 3px rgba(0, 0, 0, 0.12), inset 0 0 1000px rgba(255,255,255, .1));
+		@include box-shadow(0px 2px 0px darken($color, 16%), 0px 3px 3px rgba(0, 0, 0, 0.12), inset 0 0 1000px rgba(255,255,255, .1));
 	}
 
 	&:active {
-		top: 5px;
+		top: 2px;
 		color: darken($color, 12%);
 		@include text-shadow(0 1px 1px rgba(255,255,255, .4));
-		@include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 2px 0px darken($color, 10%), 0px 3px 3px rgba(0, 0, 0, 0.3));
-		@include background(linear-gradient(bottom, $color, darken($color, 5%)));
+		// @include box-shadow(inset 0px 1px 0px rgba(255, 255, 255, 0.3), inset 0px -1px 1px rgba(255, 255, 255, 0.15), 0px 0px 0px darken($color, 10%), 0px 0px 3px rgba(0, 0, 0, 0.12));
+		@include box-shadow(0px 0px 0px darken($color, 16%), 0px 0px 3px rgba(0, 0, 0, 0.12));
+		@include background(linear-gradient(bottom, darken($color, 5%), darken($color, 5%)));
 	}
 
 	&:disabled {

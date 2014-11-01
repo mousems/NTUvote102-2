@@ -72,7 +72,7 @@
 			display: block;
 			position: absolute;
 			z-index: 0;
-			background-color: $yello;
+			background-color: $yellow;
 			width: 140vh;
 			height: 140vh;
 			top: 50%;
@@ -213,7 +213,7 @@
 				}
 
 				.background {
-					fill: $yello;
+					fill: $yellow;
 				}
 			}
 
@@ -307,7 +307,7 @@
 	}
 
 	.id {
-		width: 90%;
+		width: 64%;
 		border-bottom: 1px solid $candidate-border-color;
 	}
 

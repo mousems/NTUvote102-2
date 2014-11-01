@@ -7,6 +7,7 @@
 
 .vote {
 	@include box-shadow(0 1px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(128, 128, 128, 0.12) inset, 0 4px 12px rgba(0, 0, 0, 0.32));
+	@include border-radius(2px);
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
@@ -20,7 +21,7 @@
 
 	@for $i from 1 through 100 {
 		&:nth-of-type(#{$i}) {
-			@include transition-delay(#{$i/10}s);
+			@include transition-delay(#{$i/12}s);
 		}
 	}
 
@@ -33,18 +34,21 @@
 	body.ready & {
 		@include opacity(1);
 		@include translateY(0);
+		@include transition-timing-function(ease-out);
 	}
 
 	body.sending & {
 		@include opacity(0);
-		@include translateY(-160px);
-		@include transition-duration(1.5s);
+		@include translateY(-300px);
+		@include transition-duration(1s);
+		@include transition-timing-function(ease-in);
 	}
 
 	body.skipping & {
 		@include opacity(0);
-		@include translateY(160px);
-		@include transition-duration(1.5s);
+		@include translateY(300px);
+		@include transition-duration(1s);
+		@include transition-timing-function(ease-in);
 	}
 
 	> * {

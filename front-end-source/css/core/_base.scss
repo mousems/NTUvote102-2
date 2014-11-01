@@ -18,6 +18,8 @@ body {
 	min-height: 90%;
 	background-color: $base-backgroundColor;
 
+	@include not-selectable;
+
 	* {
 		@include box-sizing(border-box);
 		-moz-user-select: none;

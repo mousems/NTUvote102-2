@@ -61,7 +61,11 @@
 		}
 
 		.button {
-			@include button(#822);
+			@include button($blue);
+		}
+
+		.button.skip {
+			@include button($grey);
 		}
 	}
 }
