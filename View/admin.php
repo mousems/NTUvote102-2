@@ -1,5 +1,12 @@
+<?php
+@session_start();
+// session_destroy();
+    if ($_SESSION['admin'] != "1") {
+        header("Location:/");
+    }
+?>
 <!DOCTYPE html>
-<html class='han-la' lang='zh-tw'>
+<html lang='zh-tw'>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
@@ -21,32 +28,38 @@
   <body class='step1'>
     <div class='wrapper'>
       <div class='content'>
-        <form action="login" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
+        <form action="" accept-charset="UTF-8" class="step1-form" method="post"><hgroup>
           <h1>102-2 NTU Vote</h1>
-          <p>若您看到此頁面，代表目前不是有效的選舉日期內。</p>
-          <p>文學院學生會長選舉</p><p>選舉時間：2014/06/14 9:00~ 2014/06/15 17:00</p>
-          <p>現在時間：<?=date("Y.m.d H:i:s");?></p>
+          <p><?=json_decode($_SESSION['realname']);?></p>
         </hgroup>
-        <!--fieldset>
-          <div class='input'>
-            <div class='label'>
-              使用者 / Username
-            </div>
-            <div class='passwords'>
-              <input name="username" id="username" maxlength="12" autofocus="autofocus" autocomplete="off" type="text" />
-            </div>
-            <br />
+        <fieldset><div class='input'>
+          <div class='passwords'>
+            <?php
 
-            <div class='label'>
-              密碼 / Password
-            </div>
-            <div class='passwords'>
-              <input name="password" id="password" maxlength="12" autocomplete="off" type="password" />
-            </div>
+              $vote_username=str_replace("staff", "vote", $_SESSION['username']);
 
+              if (file_exists("/var/log/NTUvote/stat/".$vote_username)) {
+                
+                $content = file_get_contents("/var/log/NTUvote/stat/".$vote_username);
+
+                $content = explode("\n", $content);
+                
+
+                for ($i=0; $i < 5; $i++) { 
+                  echo  "<p>".array_pop($content)."</p>";
+                }
+
+
+
+              }else{
+                echo "目前沒有記錄存在。";
+              }
+            ?>
           </div>
-          <fieldset class="buttons"><input value="Login ›" class="button" type="submit" />
-        </fieldset-->
+        </div>
+        </fieldset>
+        <fieldset class="buttons"><input value="reload" class="button" type="submit" />
+        </fieldset>
         </form>
       </div>
     </div>

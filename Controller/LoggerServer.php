@@ -3,6 +3,13 @@ require_once("Vote.php");
 
 if (isset($_GET['action']) && isset($_GET['step']) && isset($_GET['password'])) {
 	switch ($_GET['action']) {
+
+		case 'Get_Ticket_step':
+			$a = new Vote;
+			$result = $a->Get_Ticket_step($_GET['password']);
+			echo $result;
+			break;
+
 		case 'getTicket':
 			$a = new Vote;
 			$result = $a->Check_ticket($_GET['step'],$_GET['password']);

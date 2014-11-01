@@ -8,6 +8,15 @@
 	*/
 	class TicketSubmit {
 		
+
+		function errorMsg($string) {
+	        echo '<noscript>'.$string.'</noscript>';
+			echo '<script type="text/javascript">';
+	  	    echo 'alert("'.$string.'");';
+	  	    echo 'history.back();';
+	  	    echo '</script>';
+		}
+		
 		function __construct(){
 			global $loggerip;
 			$result = file_get_contents("https://".$loggerip."/testlink");
@@ -25,7 +34,7 @@
 
 			global $ServerName;
 
-			$check = preg_match("/^[A-Z]\d+$/");
+			$check = preg_match("/^[A-Z]\d+$/" , $r_id);
 			if ($check===1) {
 				file_put_contents("/var/log/NTUticket/$r_id", date("Y.m.d H:i:s ").$selection."\n" , FILE_APPEND);
 				NTUVoteLog("StoreTicket:".$r_id.":".$selection);
@@ -49,7 +58,7 @@
 			global $ServerName;
 
 
-			$check = preg_match("/^[A-Z]\d+$/");
+			$check = preg_match("/^[A-Z]\d+$/" , $r_id);
 			if ($check===1) {
 
 				foreach ($resultlist as $result_cid => $result_value) {
@@ -105,7 +114,6 @@
 
 			$votepage_main = new VotePage_main;
 			$candidate_count = sizeof($votepage_main->getCidList($_SESSION['step'],$_SESSION['password']));
-
 
 			if ($candidate_count ==0) {
 				NTUVoteLog("Ticket_Multi_Submit candidate_count=0");
