@@ -1,0 +1,99 @@
+// *************************************
+//
+//   Layout
+//   -> 版面排版
+//
+// *************************************
+
+.header {
+	height: 20vh;
+	width: 100%;
+}
+
+.main {
+	margin-top: -20vh;
+	height: 100vh;
+	padding-top: 20vh;
+	padding-left: 12px;
+	padding-right: 12px;
+	overflow: auto;
+	overflow-y: hidden;
+	overflow-x: auto;
+	white-space: nowrap;
+
+	> * {
+		display: inline-block;
+		pointer-events: auto;
+	}
+
+	&::after {
+		content: '';
+		position: fixed;
+		z-index: 1001;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		@include background(
+			radial-gradient(farthest-side at 0 50%, rgba(0,0,0, .64), rgba(0,0,0, 0)),
+			radial-gradient(farthest-side at 100% 50%, rgba(0,0,0, .64), rgba(0,0,0, 0))
+		);
+		background-position: left center, right center;
+		@include background-size(
+			11px 100%,
+			11px 100%
+		);
+		background-repeat: no-repeat;
+	}
+
+	&.mini::after {
+		content: none;
+	}
+
+	.main-before {
+		position: relative;
+		z-index: 1002;
+		width: 34px;
+		margin-right: -34px;
+		margin-bottom: -200vh;
+		height: 200vh;
+		top: -100vh;
+		left: -12px;
+		pointer-events: none;
+		@include background(
+			linear-gradient(left, rgba($base-backgroundColor, 1) 0%, rgba($base-backgroundColor, 1) 25%, rgba($base-backgroundColor, 0) 100%)
+		);
+		background-position: left center;
+		@include background-size(
+			33px 100%
+		);
+		background-repeat: no-repeat;
+	}
+
+	.main-after {
+		position: relative;
+		z-index: 1002;
+		width: 34px;
+		margin-left: -34px;
+		margin-bottom: -200vh;
+		height: 200vh;
+		top: -100vh;
+		right: -12px;
+		pointer-events: none;
+		@include background(
+			linear-gradient(right, rgba($base-backgroundColor, 1) 0%, rgba($base-backgroundColor, 1) 25%, rgba($base-backgroundColor, 0) 100%)
+		);
+		background-position: right center;
+		@include background-size(
+			33px 100%
+		);
+		background-repeat: no-repeat;
+	}
+}
+
+.submitted {
+	.candidate {
+		top: -99999px;
+	}
+}

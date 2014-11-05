@@ -1,0 +1,71 @@
+// *************************************
+//
+//   Header
+//   -> 頭
+//
+// *************************************
+
+.header {
+	display: table;
+    width: 100%;
+
+	> * {
+		padding: 24px 36px;
+		display: table-cell;
+		height: 100%;
+	    vertical-align: middle;
+	}
+
+	.title {
+		text-align: left;
+		width: 100%;
+		text-overflow: ellipsis;
+
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		animation-fill-mode: both;
+		-webkit-animation-fill-mode: both;
+		animation-name: fadeIn;
+		-webkit-animation-name: fadeIn;
+
+		h1, h2 {
+			margin: 0;
+			text-overflow: ellipsis;
+			color: foreground-color($base-backgroundColor);
+		}
+
+		h2 {
+			font-size: 14px;
+			@include opacity(.9);
+		}
+	}
+
+	.actions {
+		white-space: nowrap;
+
+		animation-delay: 1.5s;
+		-webkit-animation-delay: 1.5s;
+		animation-duration: 1s;
+		-webkit-animation-duration: 1s;
+		animation-fill-mode: both;
+		-webkit-animation-fill-mode: both;
+		animation-name: fadeInDown;
+		-webkit-animation-name: fadeInDown;
+
+		> * {
+			margin: 8px 4px;
+		}
+
+		body.sending & {
+			display: none;
+		}
+
+		.button {
+			@include button($blue);
+		}
+
+		.button.skip {
+			@include button($grey);
+		}
+	}
+}

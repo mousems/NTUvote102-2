@@ -1,0 +1,17 @@
+= form_tag '', :class => 'token-form', :method => 'post' do
+  .header
+    %hgroup.title
+      %h1 NTU Voting
+  = field_set_tag do
+    .password-block
+      .input
+        .label
+          Password
+        .passwords
+          = text_field_tag :password1, :id => :password1, :maxlength => 4, :autocomplete => '', :autofocus => ''
+          %span -
+          = text_field_tag :password2, :id => :password2, :maxlength => 3, :autocomplete => ''
+          %span -
+          = text_field_tag :password3, :id => :password3, :maxlength => 3, :autocomplete => ''
+  = field_set_tag(:class => 'buttons') do
+    = submit_tag "Proceed ›", :class => "button"

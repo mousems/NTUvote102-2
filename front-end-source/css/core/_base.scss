@@ -1,0 +1,62 @@
+// *************************************
+//
+//   Base
+//   -> 基本元素
+//
+// *************************************
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	font-size: 120%;
+	padding: 0;
+	margin: 0;
+	min-height: 90%;
+	background-color: $base-backgroundColor;
+
+	@include not-selectable;
+
+	* {
+		@include box-sizing(border-box);
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		-o-user-select: none;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		outline: 0;
+	}
+
+	input {
+		-moz-user-select: auto;
+		-khtml-user-select: auto;
+		-webkit-user-select: auto;
+		-o-user-select: auto;
+	}
+
+	& {
+		background-image: $loading_gif;
+		background-size: initial;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	&.ready {
+		background-image: none;
+	}
+
+	&.sending {
+		background-image: $loading_gif;
+	}
+}
+
+img {
+	max-width: 100%;
+}
+
+fieldset {
+	border: none;
+}

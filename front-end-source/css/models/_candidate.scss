@@ -1,0 +1,320 @@
+// *************************************
+//
+//   Candidate
+//   -> 候選人欄
+//
+// *************************************
+
+.candidate {
+	position: relative;
+	width: 300px;
+	overflow: hidden;
+	text-align: center;
+
+	$id-height: 36px;
+	$act-height: 64px;
+	$name-height: 68px;
+
+	margin-left: 4px;
+	margin-right: 4px;
+
+	&:first-child {
+		margin-left: 2px;
+	}
+
+	&:last-child {
+		margin-right: 2px;
+	}
+
+	> * {
+		margin-left: auto;
+		margin-right: auto;
+		border: 1px solid $candidate-border-color;
+		border-bottom: none;
+	}
+
+	> *:last-child {
+		border: 1px solid $candidate-border-color;
+	}
+
+	> *, > * > * {
+		position: relative;
+		z-index: 10;
+	}
+
+	.id {
+		height: $id-height;
+		line-height: $id-height;
+	}
+
+	.elect {
+		height: $act-height;
+		z-index: 8;
+		border: none;
+		cursor: pointer;
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			z-index: 8;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			border: 1px solid $candidate-border-color;
+			border-bottom: none;
+			pointer-events: none;
+		}
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			z-index: 0;
+			background-color: $yellow;
+			width: 140vh;
+			height: 140vh;
+			top: 50%;
+			left: 50%;
+			pointer-events: none;
+			@include transition-property(all);
+			@include transition-duration(.52s);
+			@include transition-timing-function(ease-out);
+			@include border-radius(9999px);
+			@include transform-origin(top, left);
+			@include transform(scale(0) translateX(-50%) translateY(-50%));
+			@include opacity(.2);
+		}
+	}
+
+	.pic {
+		width: 100%;
+		position: relative;
+		display: inline-block;
+
+		&::before {
+			content: " ";
+			display: block;
+			height: 120%;
+			height: calc(80vh - #{$id-height} - #{$act-height} - #{$name-height} - 100px);
+			max-height: 400px;
+		}
+
+		.img {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-position: center;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-color: rgba(#eee, .5);
+			// border: 1px solid #aaa;
+		}
+	}
+
+	.name {
+		height: $name-height;
+		@include text-shadow(0 0 10px rgba(255,255,255, .9));
+		font-size: 1.7em;
+		line-height: $name-height;
+		font-weight: 800;
+		margin-top: -5px;
+	}
+
+	.choices {
+		position: relative;
+		z-index: 8;
+		height: $act-height;
+		width: 100%;
+		border: none;
+		text-align: center;
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			z-index: 8;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			border: 1px solid $candidate-border-color;
+			border-bottom: none;
+			pointer-events: none;
+		}
+
+		input {
+			display: inline-block;
+			z-index: 5;
+			top: 0;
+			left: 0;
+			height: $act-height;
+			width: 20%;
+			height: $act-height * 5;
+			top: - $act-height*4;
+			cursor: pointer;
+
+			&::before {
+				content: '';
+				display: block;
+				position: absolute;
+				z-index: 0;
+				width: 140vh;
+				height: 140vh;
+				top: $act-height*4.5;
+				left: 50%;
+				pointer-events: none;
+				@include transition-property(all);
+				@include transition-duration(.52s);
+				@include transition-timing-function(ease-out);
+				@include border-radius(9999px);
+				@include transform-origin(top, left);
+				@include transform(scale(0) translateX(-50%) translateY(-50%));
+				@include opacity(.1);
+			}
+
+			&:checked::before {
+				@include transform(scale(1) translateX(-50%) translateY(-50%));
+				@include opacity(.3);
+			}
+
+			&.agree::before {
+				background-color: $green;
+			}
+
+			&.disagree::before {
+				background-color: $red;
+			}
+
+			&.none::before {
+				content: none;
+			}
+
+			&.agree:checked ~ .choices-visualizer .agree svg {
+
+				.icon {
+					stroke: transparent;
+					fill: $base-light-color;
+				}
+
+				.background {
+					fill: $green;
+				}
+			}
+
+			&.none:checked ~ .choices-visualizer .none {
+
+				.icon {
+					stroke: transparent;
+					fill: $base-light-color;
+				}
+
+				.background {
+					fill: $yellow;
+				}
+			}
+
+			&.disagree:checked ~ .choices-visualizer .disagree {
+
+				.icon {
+					stroke: transparent;
+					fill: $base-light-color;
+				}
+
+				.background {
+					fill: $red;
+				}
+			}
+		}
+
+		.choices-visualizer {
+			display: table;
+			position: absolute;
+			border: 1px solid transparent;
+			border-bottom: none;
+			top: 0;
+			left: 18%;
+			pointer-events: none;
+			width: 64%;
+			height: 100%;
+
+			* {
+				display: table-cell;
+				width: 33.333%;
+				height: 100%;
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+				text-align: center;
+
+				svg {
+					height: $act-height;
+					width: $act-height - 28px;
+					margin-left: auto;
+					margin-right: auto;
+					overflow: visible;
+
+					&, * {
+						@include transition-property(all);
+						@include transition-duration(.2s);
+					}
+
+					.icon {
+						fill: transparent;
+						stroke: lighten($base-dark-color, 10%);
+						stroke-width: 20px;
+					}
+
+					.background {
+						fill: transparent;
+					}
+				}
+			}
+		}
+	}
+}
+
+.candidate.selected {
+
+	.elect {
+
+		&::after {
+			background-image: $vote_stamp;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		&::before {
+			@include transform(scale(1) translateX(-50%) translateY(-50%));
+			@include opacity(.7);
+		}
+	}
+}
+
+.candidate:only-child {
+	overflow: visible;
+
+	> * {
+		border: none;
+	}
+
+	> *::after {
+		border: none;
+	}
+
+	.id {
+		width: 64%;
+		border-bottom: 1px solid $candidate-border-color;
+	}
+
+	.pic {
+
+		.img {
+			border: 1px solid #aaa;
+		}
+	}
+}
