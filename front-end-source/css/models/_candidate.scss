@@ -92,14 +92,9 @@
 		width: 100%;
 		position: relative;
 		display: inline-block;
-
-		&::before {
-			content: " ";
-			display: block;
-			height: 120%;
-			height: calc(80vh - #{$id-height} - #{$act-height} - #{$name-height} - 60px);
-			max-height: 400px;
-		}
+		height: calc(80vh - #{$id-height} - #{$act-height} - #{$name-height} - 60px);
+		min-height: 100px;
+		max-height: 400px;
 
 		.img {
 			position: absolute;
