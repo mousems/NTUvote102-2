@@ -97,7 +97,7 @@
 			content: " ";
 			display: block;
 			height: 120%;
-			height: calc(80vh - #{$id-height} - #{$act-height} - #{$name-height} - 100px);
+			height: calc(80vh - #{$id-height} - #{$act-height} - #{$name-height} - 60px);
 			max-height: 400px;
 		}
 
