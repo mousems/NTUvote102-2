@@ -107,6 +107,11 @@ $('button.skip').click (e) ->
   else
     return false
 
+if !Modernizr.cssvhunit or !Modernizr.csscalc
+  $('.main').css 'height', ($(window).height()) + 'px'
+  $('.main').css 'padding-top', ($(window).height()*0.2) + 'px'
+  $('.main').css 'margin-top', (-$(window).height()*0.2) + 'px'
+  $('.candidate .pic').css 'height', ($(window).height()*0.8 - $('.candidate .id').height() - $('.candidate .elect').height() - $('.candidate .choices').height() - $('.candidate .name').height() - 60) + 'px'
 
 setTimeout ->
   $('body').addClass('ready')
